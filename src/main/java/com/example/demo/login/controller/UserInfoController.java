@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.login.service.IUserInfoService;
-import com.example.login.vo.UserInfoVO;
+import com.example.demo.login.vo.UserInfoVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

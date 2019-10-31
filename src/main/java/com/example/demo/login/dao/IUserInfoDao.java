@@ -2,7 +2,8 @@ package com.example.demo.login.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.login.vo.UserInfoVO;
+import com.example.demo.login.vo.UserInfoVO;
+
 
 
 
