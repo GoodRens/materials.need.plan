@@ -2,60 +2,39 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.app.dao.IUserInfoDao">
-	<!-- <resultMap id="BaseResultMap" type="com.neo.entity.UserEntity" > <id 
-		column="id" property="id" jdbcType="BIGINT" /> <result column="userName" 
-		property="userName" jdbcType="VARCHAR" /> <result column="passWord" property="passWord" 
-		jdbcType="VARCHAR" /> <result column="user_sex" property="userSex" javaType="com.neo.enums.UserSexEnum"/> 
-		<result column="nick_name" property="nickName" jdbcType="VARCHAR" /> </resultMap> 
-		parameterType="java.lang.Long" 入参数据类型 -->
+<mapper namespace="com.example.demo.login.dao.IUserInfoDao">
 
-
-	<select id="getUserInfoByTel" resultType="com.example.login.vo.UserInfoVO">
-		SELECT
-			t.`user_id` AS id,
-			t.`user_name` AS userName,
-			t.`user_tel` AS userTel,
-			t.`user_password` AS userPassword,
-			t.`user_id_number` AS userIdNumber,
-			t.`user_address` AS userAddress,
-			t.`user_register_date` AS userRegisterDate,
-			t.`user_online_state` AS userOnlineState,
-			t.`user_real_name` AS userRealName,
-			t.`user_id_card_front` AS userIdCardFront,
-			t.`user_id_card_reverse` AS userIdCardReverse,
-			T.`user_id_card_runholder` AS userIdCardRunholder
+	<select id="getUser" resultType="com.example.demo.login.vo.UserInfoVO">
+		SELECT 
+		  * 
 		FROM
-			user_info_t t
-		WHERE t.`user_tel` = #{userTel}
+		  user_t t 
+		WHERE t.name =#{user.name}
+	</select>
+	<select id="userNameIsExist" resultType="int">
+		SELECT 
+		  COUNT(*) 
+		FROM
+		  user_t t 
+		WHERE t.name = #{userName}
 	</select>
 
-	<insert id="insertUser">
-		INSERT INTO `user_info_t` (
-			`user_name`, 
-			`user_tel`,
-			`user_password`, 
-			`user_id_number`, 
-			`user_address`,
-			`user_register_date`, 
-			`user_online_state`, 
-			`user_real_name`,
-			`user_id_card_front`, 
-			`user_id_card_reverse`,
-			`user_id_card_runholder`) 
-		VALUES (
-			#{userName}, 
-			#{userTel}, 
-			#{userPassword}, 
-			#{userIdNumber}, 
-			#{userAddress}, 
-			now(),  
-			'0', 
-			'0', 
-			#{userIdCardFront}, 
-			#{userIdCardReverse}, 
-			#{userIdCardRunholder}
-		)
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.example.demo.login.vo.UserInfoVO">
+		INSERT INTO user_t (
+		  id,
+		  PASSWORD,
+		  NAME,
+		  creater_by,
+		  create_date
+		) 
+		VALUES
+		  (
+		    #{id},
+		    #{passWord},
+		    #{name},
+		    #{id},
+		    now()
+		  )
 	</insert>
 
 </mapper>

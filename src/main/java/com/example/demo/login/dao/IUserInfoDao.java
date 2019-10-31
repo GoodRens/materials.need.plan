@@ -1,21 +1,19 @@
 package com.example.demo.login.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.login.vo.UserInfoVO;
-
-
-
 
 @Mapper
 public interface IUserInfoDao {
 
 	/**
-	 * 根据电话号码查询是否存在
+	 * 用户名是否存在
 	 * 
 	 * @return
 	 */
-	public UserInfoVO getUserInfoByTel(UserInfoVO userInfo);
+	public int userNameIsExist(@Param("userName") String userName);
 
 	/**
 	 * 用户注册
@@ -23,4 +21,12 @@ public interface IUserInfoDao {
 	 * @param userInfo
 	 */
 	public void insertUser(UserInfoVO userInfo);
+
+	/**
+	 * 查询用户名密码
+	 * 
+	 * @param userInfo
+	 * @return
+	 */
+	public UserInfoVO getUser(@Param("user") UserInfoVO userInfo);
 }

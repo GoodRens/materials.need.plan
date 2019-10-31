@@ -1,8 +1,6 @@
 package com.example.demo.login.vo;
 
-import java.util.Date;
-
-import com.example.demo.common.vo.CommonVo;
+import com.example.demo.common.vo.CommonBaseVo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserInfoVO extends CommonVo {
+public class UserInfoVO extends CommonBaseVo {
 
 	/** ID */
 	private int id;
