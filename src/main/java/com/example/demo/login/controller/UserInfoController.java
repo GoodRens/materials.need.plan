@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api(tags = "用户操作")
-@RequestMapping("/web/client/user")
+@RequestMapping("/mnp/user")
 public class UserInfoController {
 
 	@Autowired
