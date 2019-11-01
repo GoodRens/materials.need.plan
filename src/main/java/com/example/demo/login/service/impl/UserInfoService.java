@@ -21,6 +21,7 @@ public class UserInfoService implements IUserInfoService {
 	@Override
 	public CommonResultVo<?> getUser(UserInfoVO userInfo) {
 		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
+		result.setResultVo(userInfo);
 		// 查询用户是否存在
 		int count = userInfoDao.userNameIsExist(userInfo.getName());
 		if (count <= 0) {
