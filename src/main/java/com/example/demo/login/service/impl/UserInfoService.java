@@ -1,7 +1,6 @@
 package com.example.demo.login.service.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.login.dao.IUserInfoDao;
 import com.example.demo.login.service.IUserInfoService;
-import com.example.demo.login.vo.DepartmentVo;
 import com.example.demo.login.vo.UserInfoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +22,7 @@ public class UserInfoService implements IUserInfoService {
 	IUserInfoDao userInfoDao;
 
 	@Override
-	public CommonResultVo<?> getUser(UserInfoVO userInfo) {
+	public CommonResultVo<UserInfoVO> getUser(UserInfoVO userInfo) {
 		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
 		List<UserInfoVO> list = new ArrayList<UserInfoVO>();
 		list.add(userInfo);
@@ -83,30 +81,4 @@ public class UserInfoService implements IUserInfoService {
 		return result;
 	}
 
-	@Override
-	public CommonResultVo<?> getDepartments(DepartmentVo departmentVo) {
-		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
-		// 根据部门名称查询
-		List<DepartmentVo> departmentList = userInfoDao.getDepartments(departmentVo);
-		if (departmentList.isEmpty()) {
-			result.setCode(400);
-			result.setMsg("无部门信息，请添加！");
-			return result;
-		}
-		result.setCode(200);
-		result.setMsg("查询成功！");
-		result.setResultList(departmentList);
-		return result;
-	}
-
-	/**
-	 * 根据同层级所有部门
-	 * 
-	 * @param parentId
-	 * @return
-	 */
-	public List<DepartmentVo> getDepartmentSameLevel(int parentId) {
-		List<DepartmentVo> list = new ArrayList<DepartmentVo>();
-		return list;
-	}
 }

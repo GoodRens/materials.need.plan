@@ -1,11 +1,8 @@
 package com.example.demo.login.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.demo.login.vo.DepartmentVo;
 import com.example.demo.login.vo.UserInfoVO;
 
 @Mapper
@@ -33,11 +30,4 @@ public interface IUserInfoDao {
 	 */
 	public UserInfoVO getUser(@Param("user") UserInfoVO userInfo);
 
-	/**
-	 * 获取部门/层级
-	 * 
-	 * @param departmentVo
-	 * @return
-	 */
-	public List<DepartmentVo> getDepartments(DepartmentVo departmentVo);
 }

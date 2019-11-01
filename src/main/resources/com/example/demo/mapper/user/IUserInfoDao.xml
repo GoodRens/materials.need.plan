@@ -6,10 +6,16 @@
 
 	<select id="getUser" resultType="com.example.demo.login.vo.UserInfoVO">
 		SELECT 
-		  * 
+		  u.`id` AS id,
+		  u.`name` AS NAME,
+		  u.`password` AS PASSWORD,
+		  u.`creater_by` AS createBy,
+		  u.`create_date` AS createDate,
+		  u.`last_update_by` AS lastUpdateBy,
+		  u.`last_update_date` AS lastUpdateDate 
 		FROM
-		  user_t t 
-		WHERE t.name =#{user.name}
+		  user_t u 
+		WHERE u.name = #{user.name}
 	</select>
 	<select id="userNameIsExist" resultType="int">
 		SELECT 
@@ -36,22 +42,4 @@
 		    now()
 		  )
 	</insert>
-	<select id="getDepartments" resultType="com.example.demo.login.vo.DepartmentVo">
-		SELECT 
-		  d.`id` AS id,
-		  d.`department_code` AS departmentCode,
-		  d.`is_exist_childen` AS isexistChilden,
-		  d.`parent_id` AS parentId,
-		  d.`department_level` AS departmentLevel,
-		  d.`creater_by` AS createrBy,
-		  d.`create_date` AS createDate,
-		  d.`last_update_by` AS lastupDateBy,
-		  d.`last_update_date` AS lastupDateDate 
-		FROM
-		  department_t d 
-		ORDER BY d.`department_level` DESC,
-		  d.`parent_id`  
-	</select>
-	
-	
 </mapper>

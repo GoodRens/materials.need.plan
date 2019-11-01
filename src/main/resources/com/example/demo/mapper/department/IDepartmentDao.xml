@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.department.dao.IDepartmentDao">
+
+	<select id="getDepartments" resultType="com.example.demo.department.vo.DepartmentVo">
+		SELECT 
+		  d.`id` AS id,
+		  d.`department_code` AS departmentCode,
+		  d.`is_exist_childen` AS isexistChilden,
+		  d.`parent_id` AS parentId,
+		  d.`department_level` AS departmentLevel,
+		  d.`creater_by` AS createrBy,
+		  d.`create_date` AS createDate,
+		  d.`last_update_by` AS lastupDateBy,
+		  d.`last_update_date` AS lastupDateDate 
+		FROM
+		  department_t d 
+		ORDER BY d.`department_level` DESC,
+		  d.`parent_id`  
+	</select>
+	
+	
+	<insert id="createDepartments" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.example.demo.login.vo.UserInfoVO">
+		<foreach collection="list" index="index" separator="," item="item">
+            
+        </foreach>
+	</insert>
+	
+	
+</mapper>

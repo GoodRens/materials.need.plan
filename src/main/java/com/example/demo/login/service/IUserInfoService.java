@@ -1,9 +1,6 @@
 package com.example.demo.login.service;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.example.demo.common.vo.CommonResultVo;
-import com.example.demo.login.vo.DepartmentVo;
 import com.example.demo.login.vo.UserInfoVO;
 
 public interface IUserInfoService {
@@ -14,7 +11,7 @@ public interface IUserInfoService {
 	 * @param userInfo
 	 * @return
 	 */
-	public CommonResultVo<?> getUser(UserInfoVO userInfo);
+	public CommonResultVo<UserInfoVO> getUser(UserInfoVO userInfo);
 
 	/**
 	 * 用户注册
@@ -24,11 +21,4 @@ public interface IUserInfoService {
 	 */
 	public CommonResultVo<?> insertUser(UserInfoVO userInfo);
 
-	/**
-	 * 获取部门/层级
-	 * 
-	 * @param departmentVo
-	 * @return
-	 */
-	public CommonResultVo<?> getDepartments(@RequestBody DepartmentVo departmentVo);
 }

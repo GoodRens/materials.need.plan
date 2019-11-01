@@ -1,4 +1,4 @@
-package com.example.demo.login.vo;
+package com.example.demo.department.vo;
 
 import java.util.List;
 
