@@ -1,6 +1,7 @@
 package com.example.demo.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @Api(tags = "用户操作")
 @RequestMapping("/mnp/user")
+@CrossOrigin
 public class UserInfoController {
 
 	@Autowired
