@@ -36,5 +36,22 @@
 		    now()
 		  )
 	</insert>
-
+	<select id="getDepartments" resultType="com.example.demo.login.vo.DepartmentVo">
+		SELECT 
+		  d.`id` AS id,
+		  d.`department_code` AS departmentCode,
+		  d.`is_exist_childen` AS isexistChilden,
+		  d.`parent_id` AS parentId,
+		  d.`department_level` AS departmentLevel,
+		  d.`creater_by` AS createrBy,
+		  d.`create_date` AS createDate,
+		  d.`last_update_by` AS lastupDateBy,
+		  d.`last_update_date` AS lastupDateDate 
+		FROM
+		  department_t d 
+		ORDER BY d.`department_level` DESC,
+		  d.`parent_id`  
+	</select>
+	
+	
 </mapper>

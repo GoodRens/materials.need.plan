@@ -1,5 +1,7 @@
 package com.example.demo.common.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +15,6 @@ public class CommonResultVo<T> {
 	private String msg;
 	/** 返回结果 */
 	private String result;
-	
-	private T resultVo;
+	/** 返回结果 */
+	private List<T> resultList;
 }

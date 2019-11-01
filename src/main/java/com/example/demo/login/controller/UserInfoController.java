@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.login.service.IUserInfoService;
+import com.example.demo.login.vo.DepartmentVo;
 import com.example.demo.login.vo.UserInfoVO;
 
 import io.swagger.annotations.Api;
@@ -23,15 +24,21 @@ public class UserInfoController {
 	@Autowired
 	private IUserInfoService service;
 
-	@ApiOperation(value = "用户登录校验", notes = "根据用户电话号码查询用户是否已经注册")
+	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public CommonResultVo<?> getUser(@RequestBody UserInfoVO userInfo) {
 		return service.getUser(userInfo);
 	}
 
-	@ApiOperation(value = "用户注册", notes = "用户注册")
+	@ApiOperation(value = "用户注册", notes = "用户名和密码必填")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public CommonResultVo<?> insertUser(@RequestBody UserInfoVO userInfo) {
 		return service.insertUser(userInfo);
+	}
+
+	@ApiOperation(value = "获取部门", notes = "存在层级关系")
+	@RequestMapping(value = "/getDepartments", method = RequestMethod.POST)
+	public CommonResultVo<?> getDepartments(@RequestBody DepartmentVo departmentVo) {
+		return service.getDepartments(departmentVo);
 	}
 }
