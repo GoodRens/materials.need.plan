@@ -8,6 +8,7 @@
 		SELECT 
 		  d.`id` AS id,
 		  d.`department_code` AS departmentCode,
+		  d.`department_name` AS departmentName,
 		  d.`is_exist_childen` AS isexistChilden,
 		  d.`parent_id` AS parentId,
 		  d.`department_level` AS departmentLevel,
@@ -22,11 +23,33 @@
 	</select>
 	
 	
-	<insert id="createDepartments" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.example.demo.login.vo.UserInfoVO">
-		<foreach collection="list" index="index" separator="," item="item">
-            
+	<insert id="createDepartments" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		   INSERT INTO department_t (
+			  department_code,
+			  department_name,
+			  is_exist_childen,
+			  parent_id,
+			  department_level,
+			  creater_by,
+			  create_date
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.departmentCode},
+  			 #{list.departmentName},
+  			 #{list.isExistChilden},
+  			 #{list.parentId},
+  			 #{list.departmentLevel},
+  			 #{list.createrBy},
+  			 now())
         </foreach>
 	</insert>
 	
-	
+	<delete id="deleteDepartments">
+		delete from department_t dt where dt.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list}
+		</foreach>
+		)
+	</delete>
 </mapper>

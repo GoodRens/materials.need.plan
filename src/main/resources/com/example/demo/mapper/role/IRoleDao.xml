@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.role.dao.IRoleDao">
+
+	<insert id="createRoles" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO role_t (
+			  role_name,
+			  role_code,
+			  creater_by,
+			  create_date
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.roleName},
+  			 #{list.roleCode},
+  			 #{list.createrBy},
+  			 now())
+        </foreach>
+	</insert>
+	
+	<select id="getAllRoles" resultType="com.example.demo.role.vo.RoleVO">
+		SELECT 
+		  rt.`id` AS id,
+		  rt.`role_name` AS roleName,
+		  rt.`role_code` AS roleCode,
+		  rt.`creater_by` AS createBy,
+		  rt.`create_date` AS createDate,
+		  rt.`last_update_by` AS lastUpdateBy,
+		  rt.`last_update_date` AS lastUpdateDate 
+		FROM
+		  role_t rt 
+	</select>
+	
+	<select id="getRoleById" resultType="int"> 
+		select count(*) from role_t rt where rt.id = #{id}
+	</select>
+	
+	<delete id="deleteRoles">
+		delete from role_t rt where rt.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list}
+		</foreach>
+		)
+	</delete>
+</mapper>

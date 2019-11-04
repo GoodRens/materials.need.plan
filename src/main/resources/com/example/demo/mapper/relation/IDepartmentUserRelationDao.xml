@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.relation.dao.IDepartmentUserRelationDao">
+
+	<insert id="createDepartmentUserRelations" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO department_user_relation_t (
+			  department_id,
+			  department_code,
+			  user_id,
+			  creater_by,
+			  create_date
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.departmentId},
+  			 #{list.departmentCode},
+  			 #{list.userId},
+  			 #{list.createrBy},
+  			 now())
+        </foreach>
+	</insert>
+</mapper>

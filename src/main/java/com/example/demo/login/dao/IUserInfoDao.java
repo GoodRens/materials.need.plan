@@ -1,5 +1,7 @@
 package com.example.demo.login.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,5 +31,10 @@ public interface IUserInfoDao {
 	 * @return
 	 */
 	public UserInfoVO getUser(@Param("user") UserInfoVO userInfo);
+
+	/**
+	 * 查询所有用户
+	 */
+	public List<UserInfoVO> getAllUsers();
 
 }

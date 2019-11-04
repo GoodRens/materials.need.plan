@@ -6,10 +6,12 @@ import com.example.demo.common.vo.CommonBaseVo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class DepartmentVo extends CommonBaseVo {
+@ToString
+public class DepartmentVo extends CommonBaseVo{
 
 	private int id;
 	/** 部门编号 */

@@ -1,6 +1,5 @@
 package com.example.demo.department.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +29,7 @@ public class DepartmentService implements IDepartmentService {
 		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
-			result.setCode(400);
+			result.setCode(403);
 			result.setMsg("您还未登录！");
 			return result;
 		}
@@ -47,21 +46,17 @@ public class DepartmentService implements IDepartmentService {
 		return result;
 	}
 
-	/**
-	 * 根据同层级所有部门
-	 * 
-	 * @param parentId
-	 * @return
-	 */
-	public List<DepartmentVo> getDepartmentSameLevel(int parentId) {
-		List<DepartmentVo> list = new ArrayList<DepartmentVo>();
-		return list;
-	}
-
 	@Override
-	public CommonResultVo<?> createDepartments(List<DepartmentVo> departmentVos) {
+	public CommonResultVo<?> createDepartments(HttpServletRequest request, List<DepartmentVo> departmentVos) {
 		log.info("插入部门信息" + JSONObject.toJSONString(departmentVos));
 		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+		// 登录校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
 		// 校验数据
 		if (departmentVos.isEmpty()) {
 			result.setCode(400);
@@ -73,6 +68,7 @@ public class DepartmentService implements IDepartmentService {
 					|| StringUtils.isNullOrEmpty(departmentVos.get(i).getDepartmentLevel())) {
 				result.setCode(400);
 				result.setMsg("添加部门失败，部门名称或和部门层级为空！");
+				result.setResultList(departmentVos);
 				return result;
 			}
 		}
@@ -80,6 +76,23 @@ public class DepartmentService implements IDepartmentService {
 		result.setCode(200);
 		result.setMsg("添加部门成功！");
 		result.setResultList(departmentVos);
+		return result;
+	}
+
+	@Override
+	public CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds) {
+		CommonResultVo<Integer> result = new CommonResultVo<Integer>();
+		// 登录校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		userInfoDao.deleteDepartments(departmentIds);
+		result.setCode(200);
+		result.setMsg("删除部门成功！");
+		result.setResultList(departmentIds);
 		return result;
 	}
 

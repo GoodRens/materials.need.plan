@@ -17,6 +17,7 @@
 		  user_t u 
 		WHERE u.name = #{user.name}
 	</select>
+	
 	<select id="userNameIsExist" resultType="int">
 		SELECT 
 		  COUNT(*) 
@@ -42,4 +43,16 @@
 		    now()
 		  )
 	</insert>
+	
+	<select id="getAllUsers" resultType="com.example.demo.login.vo.UserInfoVO">
+		SELECT 
+		  u.`id` AS id,
+		  u.`name` AS NAME,
+		  u.`creater_by` AS createBy,
+		  u.`create_date` AS createDate,
+		  u.`last_update_by` AS lastUpdateBy,
+		  u.`last_update_date` AS lastUpdateDate 
+		FROM
+		  user_t u 
+	</select>
 </mapper>

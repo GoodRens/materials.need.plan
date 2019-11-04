@@ -3,14 +3,18 @@ package com.example.demo.login.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.login.dao.IUserInfoDao;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
+import com.mysql.cj.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -78,6 +82,22 @@ public class UserInfoService implements IUserInfoService {
 		log.info(userInfo.getName() + "注册成功信息：" + JSONObject.toJSONString(userInfo));
 		result.setCode(200);
 		result.setMsg("注册成功！");
+		return result;
+	}
+
+	@Override
+	public CommonResultVo<?> getAllUsers(HttpServletRequest request) {
+		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		List<UserInfoVO> userInfoList = userInfoDao.getAllUsers();
+		result.setCode(200);
+		result.setMsg("获取成功！");
+		result.setResultList(userInfoList);
 		return result;
 	}
 

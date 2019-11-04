@@ -3,7 +3,6 @@ package com.example.demo.department.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.department.vo.DepartmentVo;
 
@@ -23,5 +22,12 @@ public interface IDepartmentDao {
 	 * @param departmentVos
 	 * @return
 	 */
-	public void createDepartments(@RequestBody List<DepartmentVo> departmentVos);
+	public void createDepartments(List<DepartmentVo> departmentVos);
+
+	/***
+	 * 删除部门
+	 * 
+	 * @param departmentVos
+	 */
+	public void deleteDepartments(List<Integer> departmentVos);
 }

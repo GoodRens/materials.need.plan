@@ -18,6 +18,10 @@ import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVo;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
+import com.example.demo.relation.service.IDepartmentUserRelationService;
+import com.example.demo.relation.vo.DepartmentUserRelationVO;
+import com.example.demo.role.service.IRoleService;
+import com.example.demo.role.vo.RoleVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,13 +36,19 @@ public class MaterialsNeedPlanController {
 	private static Cookie cookie;
 
 	@Autowired
-	private IUserInfoService service;
+	private IUserInfoService userInfoService;
+	@Autowired
+	private IDepartmentService departmentService;
+	@Autowired
+	private IDepartmentUserRelationService departmentUserRelationService;
+	@Autowired
+	private IRoleService roleService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public CommonResultVo<?> getUser(HttpServletResponse response, @RequestBody UserInfoVO userInfo) {
-		CommonResultVo<UserInfoVO> result = service.getUser(userInfo);
+		CommonResultVo<UserInfoVO> result = userInfoService.getUser(userInfo);
 		if (result.getCode() == 200) {
 			cookie = new Cookie("userId", result.getResultList().get(0).getId() + "");
 			response.addCookie(cookie);
@@ -60,12 +70,16 @@ public class MaterialsNeedPlanController {
 	@ApiOperation(value = "用户注册", notes = "用户名和密码必填")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public CommonResultVo<?> insertUser(@RequestBody UserInfoVO userInfo) {
-		return service.insertUser(userInfo);
+		return userInfoService.insertUser(userInfo);
+	}
+
+	@ApiOperation(value = "获取所有用户", notes = "获取所有用户")
+	@RequestMapping(value = "/getAllUsers", method = RequestMethod.POST)
+	public CommonResultVo<?> getAllUsers(HttpServletRequest request) {
+		return userInfoService.getAllUsers(request);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
-	@Autowired
-	IDepartmentService departmentService;
 
 	@ApiOperation(value = "获取部门", notes = "存在层级关系")
 	@RequestMapping(value = "/getDepartments", method = RequestMethod.POST)
@@ -77,7 +91,44 @@ public class MaterialsNeedPlanController {
 	@RequestMapping(value = "/createDepartments", method = RequestMethod.POST)
 	public CommonResultVo<?> createDepartments(HttpServletRequest request,
 			@RequestBody List<DepartmentVo> departmentVos) {
-		return null;
+		return departmentService.createDepartments(request, departmentVos);
 	}
+
+	@ApiOperation(value = "删除部门", notes = "部门id必填")
+	@RequestMapping(value = "/deleteDepartments", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteDepartments(HttpServletRequest request, @RequestBody List<Integer> departmentIds) {
+		return departmentService.deleteDepartments(request, departmentIds);
+	}
+
+	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "新增部门用户关系", notes = "部门id、,用户id必填")
+	@RequestMapping(value = "/createDepartmentUserRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> createDepartmentUserRelations(HttpServletRequest request,
+			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
+		return departmentUserRelationService.createDepartmentUserRelations(request, departmentUserRelationList);
+	}
+
+	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "获取所有的角色", notes = "获取所有的角色")
+	@RequestMapping(value = "/getAllRoles", method = RequestMethod.POST)
+	public CommonResultVo<?> getAllRoles(HttpServletRequest request) {
+		return roleService.getAllRoles(request);
+	}
+
+	@ApiOperation(value = "新增角色", notes = "角色名称必填")
+	@RequestMapping(value = "/createRoles", method = RequestMethod.POST)
+	public CommonResultVo<?> createRoles(HttpServletRequest request, @RequestBody List<RoleVO> roleList) {
+		return roleService.createRoles(request, roleList);
+	}
+
+	@ApiOperation(value = "删除角色", notes = "角色id名称必填")
+	@RequestMapping(value = "/deleteRoles", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteRoles(HttpServletRequest request, @RequestBody List<Integer> roleIds) {
+		return roleService.deleteRoles(request, roleIds);
+	}
+	/******************** 华丽丽的分割线 ***************************/
+	/******************** 华丽丽的分割线 ***************************/
+	/******************** 华丽丽的分割线 ***************************/
+	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 }
