@@ -52,6 +52,7 @@ public class MaterialsNeedPlanController {
 		if (result.getCode() == 200) {
 			cookie = new Cookie("userId", result.getResultList().get(0).getId() + "");
 			response.addCookie(cookie);
+			response.setHeader("Access-Control-Allow-Credentials", "true");
 		}
 		return result;
 	}
