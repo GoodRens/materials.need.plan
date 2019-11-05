@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DepartmentService implements IDepartmentService {
 
 	@Autowired
-	IDepartmentDao userInfoDao;
+	IDepartmentDao departmentDao;
 
 	@Override
 	public CommonResultVo<?> getDepartments(HttpServletRequest request, DepartmentVo departmentVo) {
@@ -34,7 +34,7 @@ public class DepartmentService implements IDepartmentService {
 			return result;
 		}
 		// 根据部门名称查询
-		List<DepartmentVo> departmentList = userInfoDao.getDepartments(departmentVo);
+		List<DepartmentVo> departmentList = departmentDao.getDepartments(departmentVo);
 		if (departmentList.isEmpty()) {
 			result.setCode(400);
 			result.setMsg("无部门信息，请添加！");
@@ -72,9 +72,33 @@ public class DepartmentService implements IDepartmentService {
 				return result;
 			}
 		}
-		userInfoDao.createDepartments(departmentVos);
+		String resultStr = "";
+		List<DepartmentVo> departments = departmentDao.getDepartmentsByNames(departmentVos);
+		if (departments.isEmpty()) {
+			// 空
+		} else {
+			for (int i = 0; i < departmentVos.size(); i++) {
+				for (int j = 0; j < departments.size(); j++) {
+					if (departments.get(j).getDepartmentName().equals(departmentVos.get(i).getDepartmentName())) {
+						resultStr += "角色名称：" + departmentVos.get(i).getDepartmentName() + "已存在，添加失败；";
+						departmentVos.remove(i);
+					}
+				}
+			}
+		}
+		if (departmentVos.isEmpty()) {
+			result.setCode(400);
+			result.setMsg("部门名称为空或部门角色名称已存在！");
+			return result;
+		}
+		departmentDao.createDepartments(departmentVos);
+		if (StringUtils.isNullOrEmpty(resultStr)) {
+			result.setMsg("新增成功！");
+		} else {
+			result.setMsg("部分角色新增成功！");
+			result.setResult(resultStr);
+		}
 		result.setCode(200);
-		result.setMsg("添加部门成功！");
 		result.setResultList(departmentVos);
 		return result;
 	}
@@ -89,7 +113,7 @@ public class DepartmentService implements IDepartmentService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
-		userInfoDao.deleteDepartments(departmentIds);
+		departmentDao.deleteDepartments(departmentIds);
 		result.setCode(200);
 		result.setMsg("删除部门成功！");
 		result.setResultList(departmentIds);

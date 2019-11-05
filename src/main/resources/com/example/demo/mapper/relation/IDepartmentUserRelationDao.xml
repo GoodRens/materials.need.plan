@@ -21,4 +21,9 @@
   			 now())
         </foreach>
 	</insert>
+	<delete id="deleteDepartmentUserRelations">
+		<foreach collection="list" item="list" index="index" separator=";">
+  			delete from department_user_relation_t rut where  rut.user_id = #{list.userId} and rut.department_id = #{list.departmentId}
+        </foreach>
+	</delete>
 </mapper>

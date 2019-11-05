@@ -52,4 +52,23 @@
 		</foreach>
 		)
 	</delete>
+	
+	
+	<select id="getDepartmentsByNames" resultType="com.example.demo.department.vo.DepartmentVo">
+		select d.`id` AS id,
+		  d.`department_code` AS departmentCode,
+		  d.`department_name` AS departmentName,
+		  d.`is_exist_childen` AS isexistChilden,
+		  d.`parent_id` AS parentId,
+		  d.`department_level` AS departmentLevel,
+		  d.`creater_by` AS createrBy,
+		  d.`create_date` AS createDate,
+		  d.`last_update_by` AS lastupDateBy,
+		  d.`last_update_date` AS lastupDateDate 
+		from department_t d where d.department_name in (
+			<foreach collection="list" item="list" index="index" separator=",">
+  			#{list.departmentName}
+        	</foreach>
+		)
+	</select>
 </mapper>

@@ -15,6 +15,16 @@ public interface IDepartmentUserRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	public CommonResultVo<?> createDepartmentUserRelations(HttpServletRequest request,
+	CommonResultVo<?> createDepartmentUserRelations(HttpServletRequest request,
+			List<DepartmentUserRelationVO> departmentUserRelationList);
+
+	/**
+	 * 删除部门成员
+	 * 
+	 * @param request
+	 * @param departmentUserRelationList
+	 * @return
+	 */
+	CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList);
 }

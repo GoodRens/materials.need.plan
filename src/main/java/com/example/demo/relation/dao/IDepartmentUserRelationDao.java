@@ -9,6 +9,8 @@ import com.example.demo.relation.vo.DepartmentUserRelationVO;
 @Mapper
 public interface IDepartmentUserRelationDao {
 
-	public void createDepartmentUserRelations(List<DepartmentUserRelationVO> departmentUserRelationList);
+	void createDepartmentUserRelations(List<DepartmentUserRelationVO> departmentUserRelationList);
+
+	void deleteDepartmentUserRelations(List<DepartmentUserRelationVO> departmentUserRelationList);
 
 }

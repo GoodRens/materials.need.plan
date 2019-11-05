@@ -108,7 +108,12 @@ public class MaterialsNeedPlanController {
 			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
 		return departmentUserRelationService.createDepartmentUserRelations(request, departmentUserRelationList);
 	}
-
+	@ApiOperation(value = "删除部门用户关系", notes = "部门id、,用户id必填")
+	@RequestMapping(value = "/deleteDepartmentUserRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
+			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
+		return departmentUserRelationService.deleteDepartmentUserRelations(request, departmentUserRelationList);
+	}
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "获取所有的角色", notes = "获取所有的角色")
 	@RequestMapping(value = "/getAllRoles", method = RequestMethod.POST)
@@ -128,6 +133,7 @@ public class MaterialsNeedPlanController {
 		return roleService.deleteRoles(request, roleIds);
 	}
 	/******************** 华丽丽的分割线 ***************************/
+	
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/

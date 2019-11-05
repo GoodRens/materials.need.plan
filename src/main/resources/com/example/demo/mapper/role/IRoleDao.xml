@@ -44,4 +44,19 @@
 		</foreach>
 		)
 	</delete>
+	
+	<select id="getAllRolesByNames" resultType="com.example.demo.role.vo.RoleVO">
+		select rt.`id` AS id,
+		  rt.`role_name` AS roleName,
+		  rt.`role_code` AS roleCode,
+		  rt.`creater_by` AS createBy,
+		  rt.`create_date` AS createDate,
+		  rt.`last_update_by` AS lastUpdateBy,
+		  rt.`last_update_date` AS lastUpdateDate 
+		 from role_t rt where rt.role_name in (
+			<foreach collection="list" item="list" index="index" separator=",">
+  			#{list.roleName}
+        	</foreach>
+		)
+	</select>
 </mapper>

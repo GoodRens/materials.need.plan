@@ -36,4 +36,9 @@ public interface IRoleDao {
 	 * @param roleList
 	 */
 	void deleteRoles(List<Integer> roleIds);
+
+	/**
+	 * 根据角色名称获取角色
+	 */
+	List<RoleVO> getAllRolesByNames(List<RoleVO> roleIds);
 }

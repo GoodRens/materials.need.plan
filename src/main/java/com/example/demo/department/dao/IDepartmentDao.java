@@ -14,7 +14,7 @@ public interface IDepartmentDao {
 	 * @param departmentVo
 	 * @return
 	 */
-	public List<DepartmentVo> getDepartments(DepartmentVo departmentVo);
+	List<DepartmentVo> getDepartments(DepartmentVo departmentVo);
 
 	/**
 	 * 创建部门信息
@@ -22,12 +22,14 @@ public interface IDepartmentDao {
 	 * @param departmentVos
 	 * @return
 	 */
-	public void createDepartments(List<DepartmentVo> departmentVos);
+	void createDepartments(List<DepartmentVo> departmentVos);
 
 	/***
 	 * 删除部门
 	 * 
 	 * @param departmentVos
 	 */
-	public void deleteDepartments(List<Integer> departmentVos);
+	void deleteDepartments(List<Integer> departmentVos);
+
+	List<DepartmentVo> getDepartmentsByNames(List<DepartmentVo> departmentVos);
 }
