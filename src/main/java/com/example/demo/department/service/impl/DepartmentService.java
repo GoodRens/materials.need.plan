@@ -113,11 +113,27 @@ public class DepartmentService implements IDepartmentService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
-		departmentDao.deleteDepartments(departmentIds);
+		deleteDepartmentsOfRecursion(departmentIds);
 		result.setCode(200);
-		result.setMsg("删除部门成功！");
+		result.setMsg("删除部门及其子部门成功！");
 		result.setResultList(departmentIds);
 		return result;
+	}
+
+	/**
+	 * 递归删除部门及其子部门
+	 * 
+	 * @param idList
+	 * @return
+	 */
+	public void deleteDepartmentsOfRecursion(List<Integer> idList) {
+		// 删除父部门
+		departmentDao.deleteDepartments(idList);
+		// 查询子部门id
+		List<Integer> childenIdList = departmentDao.getDepartmentIdsById(idList);
+		if (!childenIdList.isEmpty()) {
+			deleteDepartmentsOfRecursion(childenIdList);
+		}
 	}
 
 	/**

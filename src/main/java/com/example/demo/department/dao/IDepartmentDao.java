@@ -48,4 +48,11 @@ public interface IDepartmentDao {
 	 * @return
 	 */
 	List<DepartmentVo> getDepartmentByUser(@Param("userInfo") UserInfoVO userInfo);
+	
+	/**
+	 * 根据id查询子部门
+	 * @param list
+	 * @return
+	 */
+	List<Integer> getDepartmentIdsById(List<Integer> list);
 }

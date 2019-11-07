@@ -22,6 +22,17 @@
 		  d.`parent_id`  
 	</select>
 	
+	<select id="getDepartmentIdsById" resultType="java.util.List">
+		SELECT 
+		  d.`id` AS id 
+		FROM
+		  department_t d 
+		where d.parent_id in (
+			<foreach collection="list" item="list" index="index" separator=",">
+			#{list}
+		</foreach>
+		)
+	</select>
 	
 	<insert id="createDepartments" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
 		   INSERT INTO department_t (
@@ -50,7 +61,7 @@
 		<foreach collection="list" item="list" index="index" separator=",">
 			#{list}
 		</foreach>
-		)
+		) 
 	</delete>
 	
 	
