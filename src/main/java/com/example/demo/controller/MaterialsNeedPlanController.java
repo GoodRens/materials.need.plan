@@ -20,7 +20,9 @@ import com.example.demo.department.vo.DepartmentVo;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
+import com.example.demo.relation.service.IUserRoleRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
+import com.example.demo.relation.vo.UserRoleRelationVO;
 import com.example.demo.role.service.IRoleService;
 import com.example.demo.role.vo.RoleVO;
 import com.mysql.cj.util.StringUtils;
@@ -45,6 +47,9 @@ public class MaterialsNeedPlanController {
 	private IDepartmentUserRelationService departmentUserRelationService;
 	@Autowired
 	private IRoleService roleService;
+
+	@Autowired
+	private IUserRoleRelationService userRoleRelationService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -126,6 +131,12 @@ public class MaterialsNeedPlanController {
 		return departmentUserRelationService.deleteDepartmentUserRelations(request, departmentUserRelationList);
 	}
 
+	@ApiOperation(value = "查询角色部门", notes = "角色id必填")
+	@RequestMapping(value = "/getDepartmentByUser", method = RequestMethod.POST)
+	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
+		return departmentService.getDepartmentByUser(request, userInfo);
+	}
+
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "获取所有的角色", notes = "获取所有的角色")
 	@RequestMapping(value = "/getAllRoles", method = RequestMethod.POST)
@@ -146,11 +157,27 @@ public class MaterialsNeedPlanController {
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
-	@ApiOperation(value = "查询角色部门", notes = "角色id必填")
-	@RequestMapping(value = "/getDepartmentByUser", method = RequestMethod.POST)
-	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
-		return departmentService.getDepartmentByUser(request, userInfo);
+
+	@ApiOperation(value = "批量新增用户的角色", notes = "批量新增用户的角色")
+	@RequestMapping(value = "/createUserRoleRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> createUserRoleRelations(HttpServletRequest request,
+			@RequestBody List<UserRoleRelationVO> userRoleRelationList) {
+		return userRoleRelationService.createUserRoleRelations(request, userRoleRelationList);
 	}
+
+	@ApiOperation(value = "批量删除用户角色", notes = "批量删除用户角色")
+	@RequestMapping(value = "/deleteUserRoleRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteUserRoleRelations(HttpServletRequest request,
+			@RequestBody List<UserRoleRelationVO> userRoleRelationList) {
+		return userRoleRelationService.deleteUserRoleRelations(request, userRoleRelationList);
+	}
+
+	@ApiOperation(value = "查询用户的角色", notes = "获取所有的角色")
+	@RequestMapping(value = "/getRolesByUser", method = RequestMethod.POST)
+	public CommonResultVo<?> getRolesByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
+		return roleService.getRolesByUser(request, userInfo);
+	}
+
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.role.vo.RoleVO;
 
 @Mapper
@@ -41,4 +42,12 @@ public interface IRoleDao {
 	 * 根据角色名称获取角色
 	 */
 	List<RoleVO> getAllRolesByNames(List<RoleVO> roleIds);
+
+	/**
+	 * 查询用户的角色
+	 * 
+	 * @param userInfo
+	 * @return
+	 */
+	List<RoleVO> getRolesByUser(@Param("userInfo") UserInfoVO userInfo);
 }

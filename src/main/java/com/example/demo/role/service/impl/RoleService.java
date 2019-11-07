@@ -97,4 +97,27 @@ public class RoleService implements IRoleService {
 		return result;
 	}
 
+	@Override
+	public CommonResultVo<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVo<RoleVO> result = new CommonResultVo<RoleVO>();
+		// 权限校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		if (userInfo.getId() == 0) {
+			result.setCode(400);
+			result.setMsg("请传入正确的userId！");
+			return result;
+		}
+		
+		List<RoleVO> list = roleDao.getRolesByUser(userInfo);
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(list);
+		return result;
+	}
+
 }

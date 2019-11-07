@@ -11,7 +11,6 @@ import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.relation.dao.IDepartmentUserRelationDao;
 import com.example.demo.relation.service.IDepartmentRoleRelationService;
-import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 import com.mysql.cj.util.StringUtils;
 

@@ -36,4 +36,12 @@ public interface IRoleService {
 	 */
 	CommonResultVo<?> deleteRoles(HttpServletRequest request, List<Integer> roleIds);
 
+	/**
+	 * 查询用户的角色
+	 * 
+	 * @param request
+	 * @param userInfo
+	 * @return
+	 */
+	CommonResultVo<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo);
 }
