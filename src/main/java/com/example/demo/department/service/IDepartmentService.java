@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.login.vo.UserInfoVO;
 
 public interface IDepartmentService {
 	/**
@@ -16,7 +17,7 @@ public interface IDepartmentService {
 	 * @param departmentVo
 	 * @return
 	 */
-	public CommonResultVo<?> getDepartments(HttpServletRequest request, @RequestBody DepartmentVo departmentVo);
+	CommonResultVo<?> getDepartments(HttpServletRequest request, @RequestBody DepartmentVo departmentVo);
 
 	/**
 	 * 创建部门信息
@@ -24,8 +25,7 @@ public interface IDepartmentService {
 	 * @param departmentVos
 	 * @return
 	 */
-	public CommonResultVo<?> createDepartments(HttpServletRequest request,
-			@RequestBody List<DepartmentVo> departmentVos);
+	CommonResultVo<?> createDepartments(HttpServletRequest request, @RequestBody List<DepartmentVo> departmentVos);
 
 	/**
 	 * 删除部门
@@ -34,6 +34,8 @@ public interface IDepartmentService {
 	 * @param departmentVos
 	 * @return
 	 */
-	public CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
+	CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
+
+	CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
 
 }

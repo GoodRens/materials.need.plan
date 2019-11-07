@@ -65,10 +65,33 @@
 		  d.`create_date` AS createDate,
 		  d.`last_update_by` AS lastupDateBy,
 		  d.`last_update_date` AS lastupDateDate 
-		from department_t d where d.department_name in (
-			<foreach collection="list" item="list" index="index" separator=",">
-  			#{list.departmentName}
-        	</foreach>
-		)
+		from department_t d 
+		<if test="#{departments}!=null and #{departments}.size != 0">
+			where d.department_name in (
+				<foreach collection="departments" item="list" index="index" separator=",">
+	  				#{list.departmentName}
+	        	</foreach>
+			)
+		</if>
+	</select>
+	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVo">
+		SELECT 
+		  dt.`id` AS id,
+		  dt.`department_code` AS departmentCode,
+		  dt.`department_name` AS departmentName,
+		  dt.`is_exist_childen` AS isexistChilden,
+		  dt.`parent_id` AS parentId,
+		  dt.`department_level` AS departmentLevel,
+		  dt.`creater_by` AS createrBy,
+		  dt.`create_date` AS createDate,
+		  dt.`last_update_by` AS lastupDateBy,
+		  dt.`last_update_date` AS lastupDateDate 
+		FROM
+		  department_user_relation_t dut 
+		  INNER JOIN department_t dt 
+		    ON dt.`id` = dut.`department_id` 
+		  INNER JOIN user_t ut 
+		    ON ut.`id` = dut.`user_id` 
+		WHERE ut.id = #{userInfo.id}
 	</select>
 </mapper>

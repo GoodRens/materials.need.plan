@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVo;
@@ -22,6 +23,7 @@ import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 import com.example.demo.role.service.IRoleService;
 import com.example.demo.role.vo.RoleVO;
+import com.mysql.cj.util.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,8 +61,16 @@ public class MaterialsNeedPlanController {
 
 	@ApiOperation(value = "用户注销", notes = "根据用户ID")
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public CommonResultVo<?> logoutUser(HttpServletResponse response, @RequestBody UserInfoVO userInfo) {
+	public CommonResultVo<?> logoutUser(HttpServletResponse response, HttpServletRequest request,
+			@RequestBody UserInfoVO userInfo) {
 		CommonResultVo<?> result = new CommonResultVo<UserInfoVO>();
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId) || !userId.equals(userInfo.getId() + "")) {
+			result.setCode(400);
+			result.setMsg(
+					StringUtils.isNullOrEmpty(userInfo.getName()) ? "" : "[s" + userInfo.getName() + "]" + "未登录，注销失败！");
+			return result;
+		}
 		result.setCode(200);
 		result.setMsg("注销成功！");
 		cookie = new Cookie("userId", null);
@@ -108,12 +118,14 @@ public class MaterialsNeedPlanController {
 			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
 		return departmentUserRelationService.createDepartmentUserRelations(request, departmentUserRelationList);
 	}
+
 	@ApiOperation(value = "删除部门用户关系", notes = "部门id、,用户id必填")
 	@RequestMapping(value = "/deleteDepartmentUserRelations", method = RequestMethod.POST)
 	public CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
 		return departmentUserRelationService.deleteDepartmentUserRelations(request, departmentUserRelationList);
 	}
+
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "获取所有的角色", notes = "获取所有的角色")
 	@RequestMapping(value = "/getAllRoles", method = RequestMethod.POST)
@@ -132,8 +144,13 @@ public class MaterialsNeedPlanController {
 	public CommonResultVo<?> deleteRoles(HttpServletRequest request, @RequestBody List<Integer> roleIds) {
 		return roleService.deleteRoles(request, roleIds);
 	}
+
 	/******************** 华丽丽的分割线 ***************************/
-	
+	@ApiOperation(value = "查询角色部门", notes = "角色id必填")
+	@RequestMapping(value = "/getDepartmentByUser", method = RequestMethod.POST)
+	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
+		return departmentService.getDepartmentByUser(request, userInfo);
+	}
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/

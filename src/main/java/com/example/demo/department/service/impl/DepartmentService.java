@@ -13,6 +13,7 @@ import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.department.dao.IDepartmentDao;
 import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.login.vo.UserInfoVO;
 import com.mysql.cj.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -64,10 +65,9 @@ public class DepartmentService implements IDepartmentService {
 			return result;
 		}
 		for (int i = 0; i < departmentVos.size(); i++) {
-			if (StringUtils.isNullOrEmpty(departmentVos.get(i).getDepartmentName())
-					|| StringUtils.isNullOrEmpty(departmentVos.get(i).getDepartmentLevel())) {
+			if (StringUtils.isNullOrEmpty(departmentVos.get(i).getDepartmentName())) {
 				result.setCode(400);
-				result.setMsg("添加部门失败，部门名称或和部门层级为空！");
+				result.setMsg("添加部门失败，部门名称为空！");
 				result.setResultList(departmentVos);
 				return result;
 			}
@@ -117,6 +117,35 @@ public class DepartmentService implements IDepartmentService {
 		result.setCode(200);
 		result.setMsg("删除部门成功！");
 		result.setResultList(departmentIds);
+		return result;
+	}
+
+	/**
+	 * 查询角色所在部门
+	 * 
+	 * @param request
+	 * @param userInfo
+	 * @return
+	 */
+	@Override
+	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+		// 登录校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		if (userInfo.getId() == 0) {
+			result.setCode(400);
+			result.setMsg("请传入正确的userId！");
+			return result;
+		}
+		List<DepartmentVo> departments = departmentDao.getDepartmentByUser(userInfo);
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(departments);
 		return result;
 	}
 

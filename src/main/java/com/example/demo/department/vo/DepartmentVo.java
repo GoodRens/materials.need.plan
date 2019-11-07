@@ -21,7 +21,7 @@ public class DepartmentVo extends CommonBaseVo{
 	/** 父节点id */
 	private int parentId;
 	/** 是否存在子部门 0存在1不存在 */
-	private byte isExistChilden;
+	private String isExistChilden;
 	/** 部门层级 */
 	private String departmentLevel;
 	/** 子部门 */
