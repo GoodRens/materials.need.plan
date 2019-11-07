@@ -17,7 +17,7 @@ public interface IDepartmentService {
 	 * @param departmentVo
 	 * @return
 	 */
-	CommonResultVo<?> getDepartments(HttpServletRequest request, @RequestBody DepartmentVo departmentVo);
+	CommonResultVo<?> getDepartments(HttpServletRequest request, DepartmentVo departmentVo);
 
 	/**
 	 * 创建部门信息
@@ -25,7 +25,7 @@ public interface IDepartmentService {
 	 * @param departmentVos
 	 * @return
 	 */
-	CommonResultVo<?> createDepartments(HttpServletRequest request, @RequestBody List<DepartmentVo> departmentVos);
+	CommonResultVo<?> createDepartments(HttpServletRequest request, List<DepartmentVo> departmentVos);
 
 	/**
 	 * 删除部门

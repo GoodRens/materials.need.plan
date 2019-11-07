@@ -19,6 +19,8 @@ import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVo;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
+import com.example.demo.materials.service.IMaterialsNeedService;
+import com.example.demo.materials.vo.MaterialsNeedVO;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.service.IUserRoleRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
@@ -41,15 +43,21 @@ public class MaterialsNeedPlanController {
 
 	@Autowired
 	private IUserInfoService userInfoService;
+
 	@Autowired
 	private IDepartmentService departmentService;
+
 	@Autowired
 	private IDepartmentUserRelationService departmentUserRelationService;
+
 	@Autowired
 	private IRoleService roleService;
 
 	@Autowired
 	private IUserRoleRelationService userRoleRelationService;
+
+	@Autowired
+	private IMaterialsNeedService materialsNeedService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -179,6 +187,26 @@ public class MaterialsNeedPlanController {
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "批量创建物料需求", notes = "批量创建物料需求")
+	@RequestMapping(value = "/createMaterialNeeds", method = RequestMethod.POST)
+	public CommonResultVo<?> createMaterialNeeds(HttpServletRequest request,
+			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
+		return materialsNeedService.createMaterialNeeds(request, materialsNeedList);
+	}
+
+	@ApiOperation(value = "批量删除创建物料需求", notes = "id必传")
+	@RequestMapping(value = "/deleteMaterialNeeds", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteMaterialNeeds(HttpServletRequest request,
+			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
+		return materialsNeedService.deleteMaterialNeeds(request, materialsNeedList);
+	}
+
+	@ApiOperation(value = "批量更新物料需求", notes = "id必传")
+	@RequestMapping(value = "/updateMaterialNeeds", method = RequestMethod.POST)
+	public CommonResultVo<?> updateMaterialNeeds(HttpServletRequest request,
+			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
+		return materialsNeedService.updateMaterialNeeds(request, materialsNeedList);
+	}
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
