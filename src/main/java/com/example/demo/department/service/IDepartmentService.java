@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.department.vo.DepartmentVo;
 import com.example.demo.login.vo.UserInfoVO;
@@ -36,6 +34,13 @@ public interface IDepartmentService {
 	 */
 	CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
 
+	/**
+	 * 查询角色所在部门
+	 * 
+	 * @param request
+	 * @param userInfo
+	 * @return
+	 */
 	CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
 
 }

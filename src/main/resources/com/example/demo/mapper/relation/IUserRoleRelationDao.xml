@@ -19,7 +19,7 @@
   			 now())
         </foreach>
 	</insert>
-	<delete id="deleteDepartmentUserRelations">
+	<delete id="deleteUserRoleRelations">
 		<foreach collection="list" item="list" index="index" separator=";">
   			delete from user_role_relation_t urt where  urt.user_id = #{list.userId} and urt.role_id = #{list.roleId}
         </foreach>

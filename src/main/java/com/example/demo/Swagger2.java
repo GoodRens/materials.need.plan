@@ -34,7 +34,7 @@ public class Swagger2 {
  
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Web-Client")
+                .title("Material-Need-plan")
                 .description("--------------------------------")
                 .termsOfServiceUrl("https://")
                 .contact("马龙贵")
