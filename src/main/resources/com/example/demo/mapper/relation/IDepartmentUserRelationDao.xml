@@ -26,4 +26,14 @@
   			delete from department_user_relation_t rut where  rut.user_id = #{list.userId} and rut.department_id = #{list.departmentId}
         </foreach>
 	</delete>
+	
+	<select id="getDepartmentUserRelationByUR" resultType="com.example.demo.relation.vo.DepartmentUserRelationVO">
+		SELECT 
+		  rut.department_id AS departmentId,
+		  rut.user_id AS userId 
+		FROM
+		  department_user_relation_t rut 
+		WHERE rut.department_id = #{departmentUserRelation.departmentId} 
+		  and rut.user_id = #{departmentUserRelation.userId} 
+	</select>
 </mapper>

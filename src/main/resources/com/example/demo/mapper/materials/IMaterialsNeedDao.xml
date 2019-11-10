@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.role.dao.IRoleDao">
+
+	<insert id="createMaterialNeeds" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO role_t (
+			  role_name,
+			  role_code,
+			  creater_by,
+			  create_date
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.roleName},
+  			 #{list.roleCode},
+  			 #{list.createrBy},
+  			 now())
+        </foreach>
+	</insert>
+	
+</mapper>

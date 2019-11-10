@@ -12,6 +12,7 @@ import com.example.demo.common.vo.CommonResultVo;
 import com.example.demo.relation.dao.IDepartmentUserRelationDao;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
+import com.example.demo.relation.vo.UserRoleRelationVO;
 import com.mysql.cj.util.StringUtils;
 
 @Service
@@ -30,9 +31,28 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 			result.setMsg("您还未登录！");
 			return result;
 		}
+		boolean isExist = false;
+		// 去掉已经存在用户角色
+		for (int i = 0; i < departmentUserRelationList.size(); i++) {
+			DepartmentUserRelationVO dur = departmentUserRelationDao
+					.getDepartmentUserRelationByUR(departmentUserRelationList.get(i));
+			if (dur.getDepartmentId() != 0 && dur.getUserId() != 0) {
+				departmentUserRelationList.remove(i);
+				isExist = true;
+			}
+		}
+		if (departmentUserRelationList.isEmpty()) {
+			result.setCode(400);
+			result.setMsg("用户已属于以上部门！");
+			return result;
+		}
 		departmentUserRelationDao.createDepartmentUserRelations(departmentUserRelationList);
+		if (isExist) {
+			result.setMsg("部分部门已经存在，部分部门用户添加成功！");
+		} else {
+			result.setMsg("添加成功！");
+		}
 		result.setCode(200);
-		result.setMsg("添加成功！");
 		result.setResultList(departmentUserRelationList);
 		return result;
 	}

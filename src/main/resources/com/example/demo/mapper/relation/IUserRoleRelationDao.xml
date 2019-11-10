@@ -24,4 +24,14 @@
   			delete from user_role_relation_t urt where  urt.user_id = #{list.userId} and urt.role_id = #{list.roleId}
         </foreach>
 	</delete>
+	
+	<select id="getUserRoleRelationsByUR" resultType="com.example.demo.relation.vo.UserRoleRelationVO">
+		SELECT 
+		  urt.role_id AS roleId,
+		  urt.user_id AS userId 
+		FROM
+		  user_role_relation_t urt 
+		WHERE urt.role_id = #{userRoleRelation.roleId} 
+		  and urt.user_id = #{userRoleRelation.userId} 
+	</select>
 </mapper>

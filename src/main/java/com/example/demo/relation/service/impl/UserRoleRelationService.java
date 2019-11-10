@@ -30,9 +30,28 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
+		boolean isExist = false;
+		// 去掉已经存在用户角色
+		for (int i = 0; i < userRoleRelation.size(); i++) {
+			UserRoleRelationVO urr = userRoleRelationDao.getUserRoleRelationsByUR(userRoleRelation.get(i));
+			if (urr.getRoleId() != 0 && urr.getUserId() != 0) {
+				userRoleRelation.remove(i);
+				isExist = true;
+			}
+		}
+		if (userRoleRelation.isEmpty()) {
+			result.setCode(400);
+			result.setMsg("用户已拥有以上角色！");
+			return result;
+		}
 		userRoleRelationDao.createUserRoleRelations(userRoleRelation);
 		result.setCode(200);
-		result.setMsg("添加成功！");
+		if (isExist) {
+			result.setMsg("部分角色已经存在，部分用户角色添加成功！");
+		} else {
+			result.setMsg("添加成功！");
+		}
+
 		result.setResultList(userRoleRelation);
 		return result;
 	}
