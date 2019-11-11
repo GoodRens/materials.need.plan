@@ -1,6 +1,6 @@
 package com.example.demo.materials.vo;
 
-import com.example.demo.common.vo.CommonBaseVo;
+import com.example.demo.common.vo.CommonBaseVO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MaterialsNeedVO extends CommonBaseVo {
+public class MaterialsNeedVO extends CommonBaseVO {
 
 	/** id */
 	private int id;

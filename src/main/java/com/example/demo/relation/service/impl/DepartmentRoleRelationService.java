@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.relation.dao.IDepartmentRoleRelationDao;
 import com.example.demo.relation.service.IDepartmentRoleRelationService;
 import com.example.demo.relation.vo.DepartmentRoleRelationVO;
+import com.example.demo.role.vo.RoleVO;
 import com.mysql.cj.util.StringUtils;
 
 @Service
@@ -21,9 +23,9 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 	private IDepartmentRoleRelationDao departmentRoleRelationDao;
 
 	@Override
-	public CommonResultVo<?> createDepartmentRoleRelations(HttpServletRequest request,
+	public CommonResultVO<?> createDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList) {
-		CommonResultVo<DepartmentRoleRelationVO> result = new CommonResultVo<DepartmentRoleRelationVO>();
+		CommonResultVO<DepartmentRoleRelationVO> result = new CommonResultVO<DepartmentRoleRelationVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -63,10 +65,10 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 	}
 
 	@Override
-	public CommonResultVo<?> deleteDepartmentRoleRelations(HttpServletRequest request,
+	public CommonResultVO<?> deleteDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList) {
 
-		CommonResultVo<DepartmentRoleRelationVO> result = new CommonResultVo<DepartmentRoleRelationVO>();
+		CommonResultVO<DepartmentRoleRelationVO> result = new CommonResultVO<DepartmentRoleRelationVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -89,9 +91,23 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 	}
 
 	@Override
-	public CommonResultVo<?> updateDepartmentRoleRelations(HttpServletRequest request,
+	public CommonResultVO<?> updateDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, List<DepartmentVO> department) {
+		CommonResultVO<RoleVO> result = new CommonResultVO<RoleVO>();
+		// 登录校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		List<RoleVO> roles = departmentRoleRelationDao.getRoleByDepartmentId(department);
 		return null;
 	}
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonResultVo<T> {
+public class CommonResultVO<T> {
 
 	/** 返回状态 */
 	private int code;

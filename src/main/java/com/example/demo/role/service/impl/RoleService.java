@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.role.dao.IRoleDao;
 import com.example.demo.role.service.IRoleService;
@@ -22,8 +22,8 @@ public class RoleService implements IRoleService {
 	private IRoleDao roleDao;
 
 	@Override
-	public CommonResultVo<?> createRoles(HttpServletRequest request, List<RoleVO> roleList) {
-		CommonResultVo<RoleVO> result = new CommonResultVo<RoleVO>();
+	public CommonResultVO<?> createRoles(HttpServletRequest request, List<RoleVO> roleList) {
+		CommonResultVO<RoleVO> result = new CommonResultVO<RoleVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -64,8 +64,8 @@ public class RoleService implements IRoleService {
 	}
 
 	@Override
-	public CommonResultVo<?> getAllRoles(HttpServletRequest request) {
-		CommonResultVo<RoleVO> result = new CommonResultVo<RoleVO>();
+	public CommonResultVO<?> getAllRoles(HttpServletRequest request) {
+		CommonResultVO<RoleVO> result = new CommonResultVO<RoleVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -81,8 +81,8 @@ public class RoleService implements IRoleService {
 	}
 
 	@Override
-	public CommonResultVo<?> deleteRoles(HttpServletRequest request, List<Integer> roleIds) {
-		CommonResultVo<Integer> result = new CommonResultVo<Integer>();
+	public CommonResultVO<?> deleteRoles(HttpServletRequest request, List<Integer> roleIds) {
+		CommonResultVO<Integer> result = new CommonResultVO<Integer>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {

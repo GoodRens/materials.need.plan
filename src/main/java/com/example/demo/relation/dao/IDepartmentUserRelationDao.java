@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 
@@ -41,5 +41,5 @@ public interface IDepartmentUserRelationDao {
 	 * @param userInfo
 	 * @return
 	 */
-	List<DepartmentVo> getDepartmentByUser(@Param("userInfo") UserInfoVO userInfo);
+	List<DepartmentVO> getDepartmentByUser(@Param("userInfo") UserInfoVO userInfo);
 }

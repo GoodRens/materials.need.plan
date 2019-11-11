@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.vo.UserRoleRelationVO;
 
@@ -17,7 +17,7 @@ public interface IUserRoleRelationService {
 	 * @param userRoleRelation
 	 */
 
-	CommonResultVo<?> createUserRoleRelations(HttpServletRequest request, List<UserRoleRelationVO> userRoleRelation);
+	CommonResultVO<?> createUserRoleRelations(HttpServletRequest request, List<UserRoleRelationVO> userRoleRelation);
 
 	/**
 	 * 批量删除用户角色
@@ -25,7 +25,7 @@ public interface IUserRoleRelationService {
 	 * @param request
 	 * @param userRoleRelation
 	 */
-	CommonResultVo<?> deleteUserRoleRelations(HttpServletRequest request, List<UserRoleRelationVO> userRoleRelation);
+	CommonResultVO<?> deleteUserRoleRelations(HttpServletRequest request, List<UserRoleRelationVO> userRoleRelation);
 	/**
 	 * 查询用户的角色
 	 * 
@@ -33,5 +33,5 @@ public interface IUserRoleRelationService {
 	 * @param userInfo
 	 * @return
 	 */
-	CommonResultVo<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo);
+	CommonResultVO<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo);
 }

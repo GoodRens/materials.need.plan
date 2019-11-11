@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.relation.vo.DepartmentRoleRelationVO;
 
 public interface IDepartmentRoleRelationService {
@@ -16,7 +17,7 @@ public interface IDepartmentRoleRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	CommonResultVo<?> createDepartmentRoleRelations(HttpServletRequest request,
+	CommonResultVO<?> createDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList);
 
 	/**
@@ -26,7 +27,7 @@ public interface IDepartmentRoleRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	CommonResultVo<?> deleteDepartmentRoleRelations(HttpServletRequest request,
+	CommonResultVO<?> deleteDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList);
 
 	/**
@@ -36,6 +37,15 @@ public interface IDepartmentRoleRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	CommonResultVo<?> updateDepartmentRoleRelations(HttpServletRequest request,
+	CommonResultVO<?> updateDepartmentRoleRelations(HttpServletRequest request,
 			List<DepartmentRoleRelationVO> departmentRoleRelationList);
+
+	/**
+	 * 查询部门下的角色
+	 * 
+	 * @param request
+	 * @param department
+	 * @return
+	 */
+	CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, List<DepartmentVO> department);
 }

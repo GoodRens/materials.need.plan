@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.vo.UserInfoVO;
 
 @Mapper
@@ -16,7 +16,7 @@ public interface IDepartmentDao {
 	 * @param departmentVo
 	 * @return
 	 */
-	List<DepartmentVo> getDepartments(@Param("departments") DepartmentVo departmentVo);
+	List<DepartmentVO> getDepartments(@Param("departments") DepartmentVO departmentVo);
 
 	/**
 	 * 创建部门信息
@@ -24,7 +24,7 @@ public interface IDepartmentDao {
 	 * @param departmentVos
 	 * @return
 	 */
-	void createDepartments(List<DepartmentVo> departmentVos);
+	void createDepartments(List<DepartmentVO> departmentVos);
 
 	/***
 	 * 删除部门
@@ -39,7 +39,7 @@ public interface IDepartmentDao {
 	 * @param departmentVos
 	 * @return
 	 */
-	List<DepartmentVo> getDepartmentsByNames(@Param("departments") List<DepartmentVo> departmentVos);
+	List<DepartmentVO> getDepartmentsByNames(@Param("departments") List<DepartmentVO> departmentVos);
 
 	/**
 	 * 根据id查询子部门

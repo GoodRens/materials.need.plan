@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 
@@ -16,7 +16,7 @@ public interface IDepartmentUserRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	CommonResultVo<?> createDepartmentUserRelations(HttpServletRequest request,
+	CommonResultVO<?> createDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList);
 
 	/**
@@ -26,7 +26,7 @@ public interface IDepartmentUserRelationService {
 	 * @param departmentUserRelationList
 	 * @return
 	 */
-	CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
+	CommonResultVO<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList);
 
 	/**
@@ -36,5 +36,5 @@ public interface IDepartmentUserRelationService {
 	 * @param userInfo
 	 * @return
 	 */
-	CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
+	CommonResultVO<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
 }

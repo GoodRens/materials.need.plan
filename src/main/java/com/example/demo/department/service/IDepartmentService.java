@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.demo.common.vo.CommonResultVo;
-import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.common.vo.CommonResultVO;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.vo.UserInfoVO;
 
 public interface IDepartmentService {
@@ -15,7 +15,7 @@ public interface IDepartmentService {
 	 * @param departmentVo
 	 * @return
 	 */
-	CommonResultVo<?> getDepartments(HttpServletRequest request, DepartmentVo departmentVo);
+	CommonResultVO<?> getDepartments(HttpServletRequest request, DepartmentVO departmentVo);
 
 	/**
 	 * 创建部门信息
@@ -23,7 +23,7 @@ public interface IDepartmentService {
 	 * @param departmentVos
 	 * @return
 	 */
-	CommonResultVo<?> createDepartments(HttpServletRequest request, List<DepartmentVo> departmentVos);
+	CommonResultVO<?> createDepartments(HttpServletRequest request, List<DepartmentVO> departmentVos);
 
 	/**
 	 * 删除部门
@@ -32,6 +32,6 @@ public interface IDepartmentService {
 	 * @param departmentVos
 	 * @return
 	 */
-	CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
+	CommonResultVO<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
 
 }

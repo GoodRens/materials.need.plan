@@ -34,4 +34,25 @@
 		where drrt.role_id = #{departmentRoleRelation.roleId} 
 			and drrt.department_id = #{departmentRoleRelation.departmentId}
 	</select>
+	<select id="getRoleByDepartmentId" resultType="com.example.demo.role.vo.RoleVO">
+		SELECT 
+		  rt.`id` AS id,
+		  rt.`role_name` AS roleName,
+		  rt.`role_code` AS roleCode,
+		  rt.`creater_by` AS createBy,
+		  rt.`create_date` AS createDate,
+		  rt.`last_update_by` AS lastUpdateBy,
+		  rt.`last_update_date` AS lastUpdateDate 
+		FROM
+		  department_role_relation_t drt 
+		  INNER JOIN role_t rt 
+		    ON rt.`id` = drt.`role_id` 
+		  INNER JOIN department_t dt 
+		    ON dt.`id` = drt.`department_id` 
+		WHERE dt.`id` in (
+		<foreach collection="list" item="list" index="index" separator=";">
+			#{list.id}
+		</foreach>
+		)
+	</select>
 </mapper>

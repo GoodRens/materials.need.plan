@@ -2,7 +2,7 @@ package com.example.demo.login.service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
 
 public interface IUserInfoService {
@@ -13,7 +13,7 @@ public interface IUserInfoService {
 	 * @param userInfo
 	 * @return
 	 */
-	public CommonResultVo<UserInfoVO> getUser(UserInfoVO userInfo);
+	public CommonResultVO<UserInfoVO> getUser(UserInfoVO userInfo);
 
 	/**
 	 * 用户注册
@@ -21,7 +21,7 @@ public interface IUserInfoService {
 	 * @param userInfo
 	 * @return
 	 */
-	public CommonResultVo<?> insertUser(UserInfoVO userInfo);
+	public CommonResultVO<?> insertUser(UserInfoVO userInfo);
 
 	/**
 	 * 查询所有用户
@@ -29,5 +29,5 @@ public interface IUserInfoService {
 	 * @param response
 	 * @return
 	 */
-	public CommonResultVo<?> getAllUsers(HttpServletRequest request);
+	public CommonResultVO<?> getAllUsers(HttpServletRequest request);
 }

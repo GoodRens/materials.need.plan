@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.materials.dao.IMaterialsNeedDao;
 import com.example.demo.materials.service.IMaterialsNeedService;
 import com.example.demo.materials.vo.MaterialsNeedVO;
@@ -21,8 +21,8 @@ public class MaterialsNeedService implements IMaterialsNeedService {
 	IMaterialsNeedDao materialsNeedDao;
 
 	@Override
-	public CommonResultVo<?> createMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
-		CommonResultVo<MaterialsNeedVO> result = new CommonResultVo<MaterialsNeedVO>();
+	public CommonResultVO<?> createMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
+		CommonResultVO<MaterialsNeedVO> result = new CommonResultVO<MaterialsNeedVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -43,8 +43,8 @@ public class MaterialsNeedService implements IMaterialsNeedService {
 	}
 
 	@Override
-	public CommonResultVo<?> deleteMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
-		CommonResultVo<MaterialsNeedVO> result = new CommonResultVo<MaterialsNeedVO>();
+	public CommonResultVO<?> deleteMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
+		CommonResultVO<MaterialsNeedVO> result = new CommonResultVO<MaterialsNeedVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -75,8 +75,8 @@ public class MaterialsNeedService implements IMaterialsNeedService {
 	}
 
 	@Override
-	public CommonResultVo<?> updateMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
-		CommonResultVo<MaterialsNeedVO> result = new CommonResultVo<MaterialsNeedVO>();
+	public CommonResultVO<?> updateMaterialNeeds(HttpServletRequest request, List<MaterialsNeedVO> materialsNeedList) {
+		CommonResultVO<MaterialsNeedVO> result = new CommonResultVO<MaterialsNeedVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {

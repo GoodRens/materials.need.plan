@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.dao.IUserRoleRelationDao;
 import com.example.demo.relation.service.IUserRoleRelationService;
@@ -23,9 +23,9 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 	private IUserRoleRelationDao userRoleRelationDao;
 
 	@Override
-	public CommonResultVo<?> createUserRoleRelations(HttpServletRequest request,
+	public CommonResultVO<?> createUserRoleRelations(HttpServletRequest request,
 			List<UserRoleRelationVO> userRoleRelation) {
-		CommonResultVo<UserRoleRelationVO> result = new CommonResultVo<UserRoleRelationVO>();
+		CommonResultVO<UserRoleRelationVO> result = new CommonResultVO<UserRoleRelationVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -59,9 +59,9 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 	}
 
 	@Override
-	public CommonResultVo<?> deleteUserRoleRelations(HttpServletRequest request,
+	public CommonResultVO<?> deleteUserRoleRelations(HttpServletRequest request,
 			List<UserRoleRelationVO> userRoleRelation) {
-		CommonResultVo<UserRoleRelationVO> result = new CommonResultVo<UserRoleRelationVO>();
+		CommonResultVO<UserRoleRelationVO> result = new CommonResultVO<UserRoleRelationVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -88,8 +88,8 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 	}
 
 	@Override
-	public CommonResultVo<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo) {
-		CommonResultVo<RoleVO> result = new CommonResultVo<RoleVO>();
+	public CommonResultVO<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVO<RoleVO> result = new CommonResultVO<RoleVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {

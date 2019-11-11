@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.dao.IDepartmentDao;
 import com.example.demo.department.service.IDepartmentService;
-import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.mysql.cj.util.StringUtils;
 
@@ -26,8 +26,8 @@ public class DepartmentService implements IDepartmentService {
 	IDepartmentDao departmentDao;
 
 	@Override
-	public CommonResultVo<?> getDepartments(HttpServletRequest request, DepartmentVo departmentVo) {
-		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+	public CommonResultVO<?> getDepartments(HttpServletRequest request, DepartmentVO departmentVo) {
+		CommonResultVO<DepartmentVO> result = new CommonResultVO<DepartmentVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -35,7 +35,7 @@ public class DepartmentService implements IDepartmentService {
 			return result;
 		}
 		// 根据部门名称查询
-		List<DepartmentVo> departmentList = departmentDao.getDepartments(departmentVo);
+		List<DepartmentVO> departmentList = departmentDao.getDepartments(departmentVo);
 		if (departmentList.isEmpty()) {
 			result.setCode(400);
 			result.setMsg("无部门信息，请添加！");
@@ -48,9 +48,9 @@ public class DepartmentService implements IDepartmentService {
 	}
 
 	@Override
-	public CommonResultVo<?> createDepartments(HttpServletRequest request, List<DepartmentVo> departmentVos) {
+	public CommonResultVO<?> createDepartments(HttpServletRequest request, List<DepartmentVO> departmentVos) {
 		log.info("插入部门信息" + JSONObject.toJSONString(departmentVos));
-		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+		CommonResultVO<DepartmentVO> result = new CommonResultVO<DepartmentVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
@@ -73,7 +73,7 @@ public class DepartmentService implements IDepartmentService {
 			}
 		}
 		String resultStr = "";
-		List<DepartmentVo> departments = departmentDao.getDepartmentsByNames(departmentVos);
+		List<DepartmentVO> departments = departmentDao.getDepartmentsByNames(departmentVos);
 		if (departments.isEmpty()) {
 			// 空
 		} else {
@@ -104,8 +104,8 @@ public class DepartmentService implements IDepartmentService {
 	}
 
 	@Override
-	public CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds) {
-		CommonResultVo<Integer> result = new CommonResultVo<Integer>();
+	public CommonResultVO<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds) {
+		CommonResultVO<Integer> result = new CommonResultVO<Integer>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {

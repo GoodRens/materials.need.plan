@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
-import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.common.vo.CommonResultVO;
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.dao.IDepartmentUserRelationDao;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
@@ -23,9 +23,9 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 	private IDepartmentUserRelationDao departmentUserRelationDao;
 
 	@Override
-	public CommonResultVo<?> createDepartmentUserRelations(HttpServletRequest request,
+	public CommonResultVO<?> createDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList) {
-		CommonResultVo<DepartmentUserRelationVO> result = new CommonResultVo<DepartmentUserRelationVO>();
+		CommonResultVO<DepartmentUserRelationVO> result = new CommonResultVO<DepartmentUserRelationVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -59,9 +59,9 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 	}
 
 	@Override
-	public CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
+	public CommonResultVO<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList) {
-		CommonResultVo<DepartmentUserRelationVO> result = new CommonResultVo<DepartmentUserRelationVO>();
+		CommonResultVO<DepartmentUserRelationVO> result = new CommonResultVO<DepartmentUserRelationVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -89,8 +89,8 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 	}
 
 	@Override
-	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo) {
-		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+	public CommonResultVO<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVO<DepartmentVO> result = new CommonResultVO<DepartmentVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);
@@ -102,7 +102,7 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 			result.setMsg("用户id为空！");
 			return result;
 		}
-		List<DepartmentVo> departments = departmentUserRelationDao.getDepartmentByUser(userInfo);
+		List<DepartmentVO> departments = departmentUserRelationDao.getDepartmentByUser(userInfo);
 		result.setCode(200);
 		result.setMsg("查询成功！");
 		result.setResultList(departments);

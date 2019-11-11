@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.dao.IUserInfoDao;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
@@ -26,8 +26,8 @@ public class UserInfoService implements IUserInfoService {
 	IUserInfoDao userInfoDao;
 
 	@Override
-	public CommonResultVo<UserInfoVO> getUser(UserInfoVO userInfo) {
-		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
+	public CommonResultVO<UserInfoVO> getUser(UserInfoVO userInfo) {
+		CommonResultVO<UserInfoVO> result = new CommonResultVO<UserInfoVO>();
 		List<UserInfoVO> list = new ArrayList<UserInfoVO>();
 		list.add(userInfo);
 		result.setResultList(list);
@@ -55,8 +55,8 @@ public class UserInfoService implements IUserInfoService {
 	}
 
 	@Override
-	public CommonResultVo<?> insertUser(UserInfoVO userInfo) {
-		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
+	public CommonResultVO<?> insertUser(UserInfoVO userInfo) {
+		CommonResultVO<UserInfoVO> result = new CommonResultVO<UserInfoVO>();
 		List<UserInfoVO> list = new ArrayList<UserInfoVO>();
 		list.add(userInfo);
 		result.setResultList(list);
@@ -86,8 +86,8 @@ public class UserInfoService implements IUserInfoService {
 	}
 
 	@Override
-	public CommonResultVo<?> getAllUsers(HttpServletRequest request) {
-		CommonResultVo<UserInfoVO> result = new CommonResultVo<UserInfoVO>();
+	public CommonResultVO<?> getAllUsers(HttpServletRequest request) {
+		CommonResultVO<UserInfoVO> result = new CommonResultVO<UserInfoVO>();
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);

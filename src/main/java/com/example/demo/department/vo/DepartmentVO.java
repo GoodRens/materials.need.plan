@@ -2,7 +2,7 @@ package com.example.demo.department.vo;
 
 import java.util.List;
 
-import com.example.demo.common.vo.CommonBaseVo;
+import com.example.demo.common.vo.CommonBaseVO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class DepartmentVo extends CommonBaseVo{
+public class DepartmentVO extends CommonBaseVO{
 
 	private int id;
 	/** 部门编号 */
@@ -25,5 +25,5 @@ public class DepartmentVo extends CommonBaseVo{
 	/** 部门层级 */
 	private String departmentLevel;
 	/** 子部门 */
-	private List<DepartmentVo> departmentChildren;
+	private List<DepartmentVO> departmentChildren;
 }

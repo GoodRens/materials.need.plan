@@ -19,7 +19,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CommonBaseVo {
+public class CommonBaseVO {
 	/** 创建人 */
 	private int createrBy;
 	/** 创建时间 */

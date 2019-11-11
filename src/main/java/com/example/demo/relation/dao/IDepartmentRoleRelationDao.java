@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.relation.vo.DepartmentRoleRelationVO;
+import com.example.demo.role.vo.RoleVO;
 
 @Mapper
 public interface IDepartmentRoleRelationDao {
@@ -42,5 +44,13 @@ public interface IDepartmentRoleRelationDao {
 	 */
 	DepartmentRoleRelationVO getDepartmentRoleRelationByUR(
 			@Param("departmentRoleRelation") DepartmentRoleRelationVO departmentRolerRelation);
+
+	/**
+	 * 查询部门的角色
+	 * 
+	 * @param department
+	 * @return
+	 */
+	List<RoleVO> getRoleByDepartmentId(List<DepartmentVO> department);
 
 }
