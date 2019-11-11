@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 
 public interface IDepartmentUserRelationService {
@@ -27,4 +28,13 @@ public interface IDepartmentUserRelationService {
 	 */
 	CommonResultVo<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			List<DepartmentUserRelationVO> departmentUserRelationList);
+
+	/**
+	 * 获取用户的部门
+	 * 
+	 * @param request
+	 * @param userInfo
+	 * @return
+	 */
+	CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
 }

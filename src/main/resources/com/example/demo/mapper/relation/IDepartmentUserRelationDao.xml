@@ -36,4 +36,25 @@
 		WHERE rut.department_id = #{departmentUserRelation.departmentId} 
 		  and rut.user_id = #{departmentUserRelation.userId} 
 	</select>
+	
+	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVo">
+		SELECT 
+		  d.`id` AS id,
+		  d.`department_code` AS departmentCode,
+		  d.`department_name` AS departmentName,
+		  d.`is_exist_childen` AS isexistChilden,
+		  d.`parent_id` AS parentId,
+		  d.`department_level` AS departmentLevel,
+		  d.`creater_by` AS createrBy,
+		  d.`create_date` AS createDate,
+		  d.`last_update_by` AS lastupDateBy,
+		  d.`last_update_date` AS lastupDateDate 
+		FROM
+		  department_user_relation_t dut 
+		  INNER JOIN department_t d 
+		    ON d.`id` = dut.`department_id` 
+		  INNER JOIN user_t u 
+		    ON u.`id` = dut.`user_id` 
+		WHERE u.`id` = #{userInfo.id}
+	</select>
 </mapper>

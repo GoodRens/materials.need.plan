@@ -41,16 +41,9 @@ public interface IDepartmentDao {
 	 */
 	List<DepartmentVo> getDepartmentsByNames(@Param("departments") List<DepartmentVo> departmentVos);
 
-	/***
-	 * 查询用户所在的部门
-	 * 
-	 * @param userInfo
-	 * @return
-	 */
-	List<DepartmentVo> getDepartmentByUser(@Param("userInfo") UserInfoVO userInfo);
-	
 	/**
 	 * 根据id查询子部门
+	 * 
 	 * @param list
 	 * @return
 	 */

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.department.vo.DepartmentVo;
+import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.dao.IDepartmentUserRelationDao;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
@@ -83,6 +85,27 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 		result.setCode(200);
 		result.setMsg("删除成功！");
 		result.setResultList(departmentUserRelationList);
+		return result;
+	}
+
+	@Override
+	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		if (userInfo.getId() == 0) {
+			result.setCode(400);
+			result.setMsg("用户id为空！");
+			return result;
+		}
+		List<DepartmentVo> departments = departmentUserRelationDao.getDepartmentByUser(userInfo);
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(departments);
 		return result;
 	}
 

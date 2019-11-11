@@ -136,33 +136,4 @@ public class DepartmentService implements IDepartmentService {
 		}
 	}
 
-	/**
-	 * 查询角色所在部门
-	 * 
-	 * @param request
-	 * @param userInfo
-	 * @return
-	 */
-	@Override
-	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo) {
-		CommonResultVo<DepartmentVo> result = new CommonResultVo<DepartmentVo>();
-		// 登录校验
-		String userId = UserRequestContext.getCurrentUser(request);
-		if (StringUtils.isNullOrEmpty(userId)) {
-			result.setCode(403);
-			result.setMsg("您还未登录！");
-			return result;
-		}
-		if (userInfo.getId() == 0) {
-			result.setCode(400);
-			result.setMsg("请传入正确的userId！");
-			return result;
-		}
-		List<DepartmentVo> departments = departmentDao.getDepartmentByUser(userInfo);
-		result.setCode(200);
-		result.setMsg("查询成功！");
-		result.setResultList(departments);
-		return result;
-	}
-
 }

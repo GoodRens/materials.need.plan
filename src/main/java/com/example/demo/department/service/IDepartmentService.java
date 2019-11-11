@@ -34,13 +34,4 @@ public interface IDepartmentService {
 	 */
 	CommonResultVo<?> deleteDepartments(HttpServletRequest request, List<Integer> departmentIds);
 
-	/**
-	 * 查询角色所在部门
-	 * 
-	 * @param request
-	 * @param userInfo
-	 * @return
-	 */
-	CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, UserInfoVO userInfo);
-
 }

@@ -147,7 +147,7 @@ public class MaterialsNeedPlanController {
 	@ApiOperation(value = "查询角色部门", notes = "角色id必填")
 	@RequestMapping(value = "/getDepartmentByUser", method = RequestMethod.POST)
 	public CommonResultVo<?> getDepartmentByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
-		return departmentService.getDepartmentByUser(request, userInfo);
+		return departmentUserRelationService.getDepartmentByUser(request, userInfo);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
@@ -220,6 +220,7 @@ public class MaterialsNeedPlanController {
 			@RequestBody List<DepartmentRoleRelationVO> departmentRoleRelationList) {
 		return departmentRoleRelationService.createDepartmentRoleRelations(request, departmentRoleRelationList);
 	}
+
 	@ApiOperation(value = "批量删除部门角色", notes = "部门id、角色id必传")
 	@RequestMapping(value = "/deleteDepartmentRoleRelations", method = RequestMethod.POST)
 	public CommonResultVo<?> deleteDepartmentRoleRelations(HttpServletRequest request,
