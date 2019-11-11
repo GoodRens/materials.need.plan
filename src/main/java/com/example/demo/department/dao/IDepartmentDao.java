@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.department.vo.DepartmentVO;
-import com.example.demo.login.vo.UserInfoVO;
 
 @Mapper
 public interface IDepartmentDao {

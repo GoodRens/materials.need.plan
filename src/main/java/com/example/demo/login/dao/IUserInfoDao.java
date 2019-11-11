@@ -11,30 +11,31 @@ import com.example.demo.login.vo.UserInfoVO;
 public interface IUserInfoDao {
 
 	/**
+	 * 查询用户名密码
+	 * 
+	 * @param userInfo
+	 * @return
+	 */
+	UserInfoVO getUser(@Param("user") UserInfoVO userInfo);
+
+	/**
 	 * 用户名是否存在
 	 * 
 	 * @return
 	 */
-	public int userNameIsExist(@Param("userName") String userName);
+	int userNameIsExist(@Param("userName") String userName);
 
 	/**
 	 * 用户注册
 	 * 
 	 * @param userInfo
 	 */
-	public void insertUser(UserInfoVO userInfo);
+	void insertUser(UserInfoVO userInfo);
 
-	/**
-	 * 查询用户名密码
-	 * 
-	 * @param userInfo
-	 * @return
-	 */
-	public UserInfoVO getUser(@Param("user") UserInfoVO userInfo);
 
 	/**
 	 * 查询所有用户
 	 */
-	public List<UserInfoVO> getAllUsers();
+	List<UserInfoVO> getAllUsers();
 
 }

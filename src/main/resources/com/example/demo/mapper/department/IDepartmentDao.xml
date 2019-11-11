@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.department.dao.IDepartmentDao">
 
-	<select id="getDepartments" resultType="com.example.demo.department.vo.DepartmentVo">
+	<select id="getDepartments" resultType="com.example.demo.department.vo.DepartmentVO">
 		SELECT 
 		  d.`id` AS id,
 		  d.`department_code` AS departmentCode,
@@ -65,7 +65,7 @@
 	</delete>
 	
 	
-	<select id="getDepartmentsByNames" resultType="com.example.demo.department.vo.DepartmentVo">
+	<select id="getDepartmentsByNames" resultType="com.example.demo.department.vo.DepartmentVO">
 		select d.`id` AS id,
 		  d.`department_code` AS departmentCode,
 		  d.`department_name` AS departmentName,
@@ -85,7 +85,7 @@
 			)
 		</if>
 	</select>
-	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVo">
+	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVO">
 		SELECT 
 		  dt.`id` AS id,
 		  dt.`department_code` AS departmentCode,

@@ -37,7 +37,7 @@
 		  and rut.user_id = #{departmentUserRelation.userId} 
 	</select>
 	
-	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVo">
+	<select id="getDepartmentByUser" resultType="com.example.demo.department.vo.DepartmentVO">
 		SELECT 
 		  d.`id` AS id,
 		  d.`department_code` AS departmentCode,
