@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class DepartmentRolerRelationVO extends CommonBaseVo {
+public class DepartmentRoleRelationVO extends CommonBaseVo {
 
 	/** id */
 	private int id;
@@ -17,6 +17,6 @@ public class DepartmentRolerRelationVO extends CommonBaseVo {
 	private int departmentId;
 	/** 部门编号 */
 	private int departmentCode;
-	/** 用户id */
-	private int userId;
+	/** 角色id */
+	private int roleId;
 }

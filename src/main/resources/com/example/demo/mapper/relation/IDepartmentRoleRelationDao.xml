@@ -4,19 +4,34 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.relation.dao.IDepartmentRoleRelationDao">
 
-	<insert id="createRoles" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
-		 INSERT INTO role_t (
-			  role_name,
-			  role_code,
+	<insert id="createDepartmentRoleRelations" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO department_role_relation_t (
+			  department_id,
+			  role_id,
 			  creater_by,
 			  create_date
 			) 
 			VALUES
 		<foreach collection="list" item="list" index="index" separator=",">
-  			(#{list.roleName},
-  			 #{list.roleCode},
+  			(#{list.departmentId},
+  			 #{list.roleId},
   			 #{list.createrBy},
   			 now())
         </foreach>
 	</insert>
+	
+	<delete id="deleteDepartmentRoleRelations">
+		<foreach collection="list" item="list" index="index" separator=";">
+  			delete from department_role_relation_t drrt where  drrt.role_id = #{list.roleId} and drrt.department_id = #{list.departmentId}
+        </foreach>
+	</delete>
+	
+	<select id="getDepartmentRoleRelationByUR" resultType="com.example.demo.relation.vo.DepartmentRoleRelationVO">
+		select 
+			drrt.role_id,
+			drrt.department_id 
+		from department_role_relation_t drrt 
+		where drrt.role_id = #{departmentRoleRelation.roleId} 
+			and drrt.department_id = #{departmentRoleRelation.departmentId}
+	</select>
 </mapper>

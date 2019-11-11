@@ -10,9 +10,26 @@ import com.example.demo.relation.vo.DepartmentUserRelationVO;
 @Mapper
 public interface IDepartmentUserRelationDao {
 
+	/**
+	 * 批量创建部门用户
+	 * 
+	 * @param departmentUserRelationList
+	 */
 	void createDepartmentUserRelations(List<DepartmentUserRelationVO> departmentUserRelationList);
 
+	/**
+	 * 批量删除部门用户
+	 * 
+	 * @param departmentUserRelationList
+	 */
 	void deleteDepartmentUserRelations(List<DepartmentUserRelationVO> departmentUserRelationList);
 
-	DepartmentUserRelationVO getDepartmentUserRelationByUR(@Param("departmentUserRelation")DepartmentUserRelationVO departmentUserRelation);
+	/**
+	 * 根据部门id和用户id查询该关系
+	 * 
+	 * @param departmentUserRelation
+	 * @return
+	 */
+	DepartmentUserRelationVO getDepartmentUserRelationByUR(
+			@Param("departmentUserRelation") DepartmentUserRelationVO departmentUserRelation);
 }

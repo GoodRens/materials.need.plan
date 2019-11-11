@@ -21,8 +21,10 @@ import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.materials.service.IMaterialsNeedService;
 import com.example.demo.materials.vo.MaterialsNeedVO;
+import com.example.demo.relation.service.IDepartmentRoleRelationService;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.service.IUserRoleRelationService;
+import com.example.demo.relation.vo.DepartmentRoleRelationVO;
 import com.example.demo.relation.vo.DepartmentUserRelationVO;
 import com.example.demo.relation.vo.UserRoleRelationVO;
 import com.example.demo.role.service.IRoleService;
@@ -58,6 +60,9 @@ public class MaterialsNeedPlanController {
 
 	@Autowired
 	private IMaterialsNeedService materialsNeedService;
+
+	@Autowired
+	private IDepartmentRoleRelationService departmentRoleRelationService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -207,7 +212,21 @@ public class MaterialsNeedPlanController {
 			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
 		return materialsNeedService.updateMaterialNeeds(request, materialsNeedList);
 	}
+
 	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "批量创建部门角色", notes = "部门id、角色id必传")
+	@RequestMapping(value = "/createDepartmentRoleRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> createDepartmentRoleRelations(HttpServletRequest request,
+			@RequestBody List<DepartmentRoleRelationVO> departmentRoleRelationList) {
+		return departmentRoleRelationService.createDepartmentRoleRelations(request, departmentRoleRelationList);
+	}
+	@ApiOperation(value = "批量删除部门角色", notes = "部门id、角色id必传")
+	@RequestMapping(value = "/deleteDepartmentRoleRelations", method = RequestMethod.POST)
+	public CommonResultVo<?> deleteDepartmentRoleRelations(HttpServletRequest request,
+			@RequestBody List<DepartmentRoleRelationVO> departmentRoleRelationList) {
+		return departmentRoleRelationService.deleteDepartmentRoleRelations(request, departmentRoleRelationList);
+	}
+
 	/******************** 华丽丽的分割线 ***************************/
 	/******************** 华丽丽的分割线 ***************************/
 }
