@@ -8,7 +8,7 @@ import java.lang.annotation.ElementType;
  * @author MaLongGui
  *
  */
-public class StatiCvariables {
+public class StaticVariables {
 
 	public static ElementType[] userStatus = {} ;
 }

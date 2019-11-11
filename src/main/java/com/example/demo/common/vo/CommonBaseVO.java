@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  ** 公共的VO，所有的VO必须集成此类
@@ -18,18 +17,18 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
 public class CommonBaseVO {
 	/** 创建人 */
 	private int createrBy;
 	/** 创建时间 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createDate;
 	/** 最后更新人 */
 	private int lastUpdateBy;
 	/** 最后更新时间 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date lastUpdateDate;
+
 }
