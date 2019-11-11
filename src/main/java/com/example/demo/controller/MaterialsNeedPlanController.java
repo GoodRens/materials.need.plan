@@ -188,7 +188,7 @@ public class MaterialsNeedPlanController {
 	@ApiOperation(value = "查询用户的角色", notes = "获取所有的角色")
 	@RequestMapping(value = "/getRolesByUser", method = RequestMethod.POST)
 	public CommonResultVo<?> getRolesByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
-		return roleService.getRolesByUser(request, userInfo);
+		return userRoleRelationService.getRolesByUser(request, userInfo);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/

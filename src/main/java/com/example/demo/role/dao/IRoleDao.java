@@ -43,11 +43,4 @@ public interface IRoleDao {
 	 */
 	List<RoleVO> getAllRolesByNames(List<RoleVO> roleIds);
 
-	/**
-	 * 查询用户的角色
-	 * 
-	 * @param userInfo
-	 * @return
-	 */
-	List<RoleVO> getRolesByUser(@Param("userInfo") UserInfoVO userInfo);
 }

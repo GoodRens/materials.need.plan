@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVo;
+import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.relation.dao.IUserRoleRelationDao;
 import com.example.demo.relation.service.IUserRoleRelationService;
 import com.example.demo.relation.vo.UserRoleRelationVO;
+import com.example.demo.role.vo.RoleVO;
 import com.mysql.cj.util.StringUtils;
 
 @Service
@@ -82,6 +84,29 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 		result.setCode(200);
 		result.setMsg("删除成功！");
 		result.setResultList(userRoleRelation);
+		return result;
+	}
+
+	@Override
+	public CommonResultVo<?> getRolesByUser(HttpServletRequest request, UserInfoVO userInfo) {
+		CommonResultVo<RoleVO> result = new CommonResultVo<RoleVO>();
+		// 权限校验
+		String userId = UserRequestContext.getCurrentUser(request);
+		if (StringUtils.isNullOrEmpty(userId)) {
+			result.setCode(403);
+			result.setMsg("您还未登录！");
+			return result;
+		}
+		if (userInfo.getId() == 0) {
+			result.setCode(400);
+			result.setMsg("请传入正确的userId！");
+			return result;
+		}
+
+		List<RoleVO> list = userRoleRelationDao.getRolesByUser(userInfo);
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(list);
 		return result;
 	}
 
