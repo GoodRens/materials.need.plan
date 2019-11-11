@@ -59,21 +59,5 @@
         	</foreach>
 		)
 	</select>
-	<select id="getRolesByUser" resultType="com.example.demo.role.vo.RoleVO">
-		SELECT 
-		  rt.`id` AS id,
-		  rt.`role_name` AS roleName,
-		  rt.`role_code` AS roleCode,
-		  rt.`creater_by` AS createBy,
-		  rt.`create_date` AS createDate,
-		  rt.`last_update_by` AS lastUpdateBy,
-		  rt.`last_update_date` AS lastUpdateDate  
-		FROM
-		  user_role_relation_t urt 
-		  INNER JOIN user_t ut 
-		    ON urt.`user_id` = ut.`id` 
-		  INNER JOIN role_t rt 
-		    ON rt.`id` = urt.`role_id` 
-		WHERE ut.`id` = #{userInfo.id} 
-	</select>
+	
 </mapper>
