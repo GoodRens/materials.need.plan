@@ -29,8 +29,25 @@ public class UnitService implements IUnitService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
+		for (int i = 0; i < unitList.size(); i++) {
+			if (StringUtils.isNullOrEmpty(unitList.get(i).getUnitName())) {
+				unitList.remove(i);
+			} else {
+				List<UnitVO> units = unitDao.Queryunit(unitList.get(i));
+				if (!units.isEmpty()) {
+					unitList.remove(i);
+				}
+			}
+		}
+		if (unitList.isEmpty()) {
+			result.setCode(400);
+			result.setMsg("数据格式不正确！");
+			return result;
+		}
 		unitDao.AddOrUpdateunit(unitList);
-		return null;
+		result.setCode(200);
+		result.setMsg("添加成功！");
+		return result;
 	}
 
 	@Override
@@ -43,8 +60,20 @@ public class UnitService implements IUnitService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
+		for (int i = 0; i < unitList.size(); i++) {
+			if (unitList.get(i).getUnitID() == 0) {
+				unitList.remove(i);
+			}
+		}
+		if (unitList.isEmpty()) {
+			result.setCode(400);
+			result.setMsg("数据格式不正确！");
+			return result;
+		}
 		unitDao.Deleteunit(unitList);
-		return null;
+		result.setCode(200);
+		result.setMsg("删除成功！");
+		return result;
 	}
 
 	@Override
@@ -58,7 +87,10 @@ public class UnitService implements IUnitService {
 			return result;
 		}
 		List<UnitVO> units = unitDao.Queryunit(unit);
-		return null;
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(units);
+		return result;
 	}
 
 }

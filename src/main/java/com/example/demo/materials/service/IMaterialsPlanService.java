@@ -10,7 +10,7 @@ import com.example.demo.materials.vo.MaterialsPlanVO;
 public interface IMaterialsPlanService {
 
 	/**
-	 * 批量创建物料需求
+	 * 批量创建物料计划
 	 * 
 	 * @param request
 	 * @param materialsNeedList
@@ -19,7 +19,7 @@ public interface IMaterialsPlanService {
 	CommonResultVO<?> AddNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
 
 	/**
-	 * 批量删除物料需求
+	 * 批量删除物料计划
 	 * 
 	 * @param request
 	 * @param materialsNeedList
@@ -28,11 +28,11 @@ public interface IMaterialsPlanService {
 	CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
 
 	/**
-	 * 批量更新物料需求
+	 * 批量更新物料计划
 	 * 
 	 * @param request
 	 * @param materialsNeedList
 	 * @return
 	 */
-	CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
+	CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, MaterialsPlanVO materialsNeed);
 }

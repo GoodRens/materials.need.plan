@@ -31,14 +31,14 @@ public class SupplierService implements ISupplierService {
 			return result;
 		}
 		// 数据校验及重复校验
-		for (SupplierVO supplierVO : supplierList) {
-			if (StringUtils.isNullOrEmpty(supplierVO.getSupplierName())) {
-				supplierList.remove(supplierVO);
+		for (int i = 0; i < supplierList.size(); i++) {
+			if (StringUtils.isNullOrEmpty(supplierList.get(i).getSupplierName())) {
+				supplierList.remove(i);
 				continue;
 			}
-			List<SupplierVO> existSuppliers = supplierDao.QueryWl(supplierVO);
+			List<SupplierVO> existSuppliers = supplierDao.QueryWl(supplierList.get(i));
 			if (!existSuppliers.isEmpty()) {
-				supplierList.remove(supplierVO);
+				supplierList.remove(i);
 			}
 		}
 		if (supplierList.isEmpty()) {
@@ -64,9 +64,9 @@ public class SupplierService implements ISupplierService {
 			return result;
 		}
 		// 数据校验
-		for (SupplierVO supplierVO : supplierList) {
-			if (supplierVO.getSupplierID() == 0) {
-				supplierList.remove(supplierVO);
+		for (int i = 0; i < supplierList.size(); i++) {
+			if (supplierList.get(i).getSupplierID() == 0) {
+				supplierList.remove(i);
 			}
 		}
 		// 是否为空
@@ -77,7 +77,7 @@ public class SupplierService implements ISupplierService {
 		}
 		supplierDao.DeleteSupplier(supplierList);
 		result.setCode(200);
-		result.setMsg("添加成功！");
+		result.setMsg("删除成功！");
 		return result;
 	}
 
