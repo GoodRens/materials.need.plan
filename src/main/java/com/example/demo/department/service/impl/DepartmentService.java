@@ -13,7 +13,6 @@ import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.dao.IDepartmentDao;
 import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVO;
-import com.example.demo.login.vo.UserInfoVO;
 import com.mysql.cj.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;

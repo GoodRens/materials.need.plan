@@ -1,6 +1,11 @@
 package com.example.demo.unit.service;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.demo.common.vo.CommonResultVO;
+import com.example.demo.unit.vo.UnitVO;
 
 public interface IUnitService {
 
@@ -9,7 +14,7 @@ public interface IUnitService {
 	 * 
 	 * @return
 	 */
-	CommonResultVO<?> AddOrUpdateunit();
+	CommonResultVO<?> AddOrUpdateunit(HttpServletRequest request, List<UnitVO> unitList);
 
 	/**
 	 * 删除单位
@@ -17,7 +22,7 @@ public interface IUnitService {
 	 * @param supplierId
 	 * @return
 	 */
-	CommonResultVO<?> Deleteunit(String supplierId);
+	CommonResultVO<?> Deleteunit(HttpServletRequest request, List<UnitVO> unitList);
 
 	/**
 	 * 查询单位
@@ -25,5 +30,5 @@ public interface IUnitService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> Queryunit(String supplierName);
+	CommonResultVO<?> Queryunit(HttpServletRequest request, List<UnitVO> unitList);
 }

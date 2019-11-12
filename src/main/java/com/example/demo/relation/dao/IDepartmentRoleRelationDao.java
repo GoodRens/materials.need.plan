@@ -51,6 +51,6 @@ public interface IDepartmentRoleRelationDao {
 	 * @param department
 	 * @return
 	 */
-	List<RoleVO> getRoleByDepartmentId(List<DepartmentVO> department);
+	List<RoleVO> getRoleByDepartmentId(DepartmentVO department);
 
 }

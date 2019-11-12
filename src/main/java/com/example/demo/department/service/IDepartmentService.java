@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.vo.DepartmentVO;
-import com.example.demo.login.vo.UserInfoVO;
 
 public interface IDepartmentService {
 	/**

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.common.vo.CommonResultVO;
-import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.role.vo.RoleVO;
 
 public interface IRoleService {
@@ -36,5 +35,4 @@ public interface IRoleService {
 	 */
 	CommonResultVO<?> deleteRoles(HttpServletRequest request, List<Integer> roleIds);
 
-	
 }

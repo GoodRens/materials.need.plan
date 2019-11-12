@@ -5,6 +5,12 @@ import com.example.demo.common.vo.CommonBaseVO;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 供应商VO
+ * 
+ * @author MaLongGui
+ *
+ */
 @Getter
 @Setter
 public class SupplierVO extends CommonBaseVO {

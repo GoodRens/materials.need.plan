@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
-import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.role.dao.IRoleDao;
 import com.example.demo.role.service.IRoleService;
 import com.example.demo.role.vo.RoleVO;

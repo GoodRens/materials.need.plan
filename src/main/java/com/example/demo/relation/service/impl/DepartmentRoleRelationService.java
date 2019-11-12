@@ -98,7 +98,7 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 	}
 
 	@Override
-	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, List<DepartmentVO> department) {
+	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, DepartmentVO department) {
 		CommonResultVO<RoleVO> result = new CommonResultVO<RoleVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);

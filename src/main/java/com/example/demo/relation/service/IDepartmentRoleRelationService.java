@@ -47,5 +47,5 @@ public interface IDepartmentRoleRelationService {
 	 * @param department
 	 * @return
 	 */
-	CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, List<DepartmentVO> department);
+	CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, DepartmentVO department);
 }

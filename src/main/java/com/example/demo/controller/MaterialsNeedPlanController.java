@@ -29,6 +29,10 @@ import com.example.demo.relation.vo.DepartmentUserRelationVO;
 import com.example.demo.relation.vo.UserRoleRelationVO;
 import com.example.demo.role.service.IRoleService;
 import com.example.demo.role.vo.RoleVO;
+import com.example.demo.supplier.service.ISupplierService;
+import com.example.demo.supplier.vo.SupplierVO;
+import com.example.demo.unit.service.IUnitService;
+import com.example.demo.unit.vo.UnitVO;
 import com.mysql.cj.util.StringUtils;
 
 import io.swagger.annotations.Api;
@@ -63,6 +67,12 @@ public class MaterialsNeedPlanController {
 
 	@Autowired
 	private IDepartmentRoleRelationService departmentRoleRelationService;
+
+	@Autowired
+	private ISupplierService supplierService;
+
+	@Autowired
+	private IUnitService unitService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -230,11 +240,47 @@ public class MaterialsNeedPlanController {
 
 	@ApiOperation(value = "获取部门下所有角色", notes = "部门id必传")
 	@RequestMapping(value = "/getRoleByDepartmentId", method = RequestMethod.POST)
-	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request,
-			@RequestBody List<DepartmentVO> department) {
+	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, @RequestBody DepartmentVO department) {
 		return departmentRoleRelationService.getRoleByDepartmentId(request, department);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "添加供应商", notes = "有id时更新，无时新建")
+	@RequestMapping(value = "/AddOrUpdateSupplier", method = RequestMethod.POST)
+	public CommonResultVO<?> AddOrUpdateSupplier(HttpServletRequest request,
+			@RequestBody List<SupplierVO> supplierList) {
+		return supplierService.AddOrUpdateSupplier(request, supplierList);
+	}
+
+	@ApiOperation(value = "删除供应商", notes = "id必传")
+	@RequestMapping(value = "/DeleteSupplier", method = RequestMethod.POST)
+	public CommonResultVO<?> DeleteSupplier(HttpServletRequest request, @RequestBody List<SupplierVO> supplierList) {
+		return supplierService.DeleteSupplier(request, supplierList);
+	}
+
+	@ApiOperation(value = "查询供应商", notes = "name无时查询所有")
+	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
+	public CommonResultVO<?> QueryWl(HttpServletRequest request, @RequestBody SupplierVO supplier) {
+		return supplierService.QueryWl(request, supplier);
+	}
+
 	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "添加物料单位", notes = "有id时更新，无时新建")
+	@RequestMapping(value = "/AddOrUpdateunit", method = RequestMethod.POST)
+	public CommonResultVO<?> AddOrUpdateunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
+		return unitService.AddOrUpdateunit(request, unitList);
+	}
+
+	@ApiOperation(value = "删除物料单位", notes = "id必传")
+	@RequestMapping(value = "/Deleteunit", method = RequestMethod.POST)
+	public CommonResultVO<?> Deleteunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
+		return unitService.Deleteunit(request, unitList);
+	}
+
+	@ApiOperation(value = "查询物料单位", notes = "无name时查询所有")
+	@RequestMapping(value = "/Queryunit", method = RequestMethod.POST)
+	public CommonResultVO<?> Queryunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
+		return unitService.Queryunit(request, unitList);
+	}
+
 }

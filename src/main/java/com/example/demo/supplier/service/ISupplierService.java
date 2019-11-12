@@ -2,6 +2,8 @@ package com.example.demo.supplier.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.supplier.vo.SupplierVO;
 
@@ -12,7 +14,7 @@ public interface ISupplierService {
 	 * 
 	 * @return
 	 */
-	CommonResultVO<?> AddOrUpdateSupplier(List<SupplierVO> supplierList);
+	CommonResultVO<?> AddOrUpdateSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
 
 	/**
 	 * 删除供应商
@@ -20,7 +22,7 @@ public interface ISupplierService {
 	 * @param supplierId
 	 * @return
 	 */
-	CommonResultVO<?> DeleteSupplier(List<SupplierVO> supplierList);
+	CommonResultVO<?> DeleteSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
 
 	/**
 	 * 查询所有的供应商
@@ -28,5 +30,5 @@ public interface ISupplierService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> QueryWl(SupplierVO supplier);
+	CommonResultVO<?> QueryWl(HttpServletRequest request,SupplierVO supplier);
 }
