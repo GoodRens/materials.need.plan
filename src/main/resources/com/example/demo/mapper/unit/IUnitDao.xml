@@ -5,10 +5,10 @@
 <mapper namespace="com.example.demo.unit.dao.IUnitDao">
 
 	<insert id="AddOrUpdateunit">
-		insert into unit_t (id,name) values
+		insert into unit_t (name) values
 		<foreach collection="list" item="list" index="index"
 			separator=",">
-			(#{list.UnitID},
+			(
 			#{list.UnitName}
 			)
 		</foreach>
