@@ -22,7 +22,7 @@
 		  d.`parent_id`  
 	</select>
 	
-	<select id="getDepartmentIdsById" resultType="java.util.List">
+	<select id="getDepartmentIdsById" resultType="int">
 		SELECT 
 		  d.`id` AS id 
 		FROM

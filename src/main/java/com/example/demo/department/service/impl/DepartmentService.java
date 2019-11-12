@@ -127,6 +127,9 @@ public class DepartmentService implements IDepartmentService {
 	 * @return
 	 */
 	public void deleteDepartmentsOfRecursion(List<Integer> idList) {
+		if(idList.isEmpty()) {
+			return;
+		}
 		// 删除父部门
 		departmentDao.deleteDepartments(idList);
 		// 查询子部门id
