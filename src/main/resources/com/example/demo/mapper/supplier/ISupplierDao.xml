@@ -5,9 +5,9 @@
 <mapper namespace="com.example.demo.supplier.dao.ISupplierDao">
 
 	<insert id="AddOrUpdateSupplier">
-		insert into supplier_t (id,name) values 
+		insert into supplier_t (name) values 
 		<foreach collection="list" item="list" index="index" separator=",">
-  			(#{list.SupplierID},
+  			(
   			 #{list.SupplierName}
   			 )
         </foreach>

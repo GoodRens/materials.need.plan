@@ -8,7 +8,7 @@
 		insert into unit_t (id,name) values
 		<foreach collection="list" item="list" index="index"
 			separator=",">
-			(#{list.UnitID},
+			(
 			#{list.UnitName}
 			)
 		</foreach>
