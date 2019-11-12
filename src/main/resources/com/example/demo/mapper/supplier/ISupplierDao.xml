@@ -23,7 +23,7 @@
 	<select id="QueryWl" resultType="com.example.demo.supplier.vo.SupplierVO">
 		SELECT ST.ID AS SupplierID,ST.NAME AS SupplierName  FROM supplier_t st 
 		<if test="supplier !=null and supplier.SupplierName != null">
-			where ST.name  = #{supplier.SupplierName}
+			where ST.name  = #{SupplierName}
 		</if>
 	</select>
 </mapper>
