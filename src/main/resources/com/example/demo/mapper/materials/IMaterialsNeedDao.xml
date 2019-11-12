@@ -2,11 +2,10 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.department.dao.IDepartmentDao">
+<mapper namespace="com.example.demo.materials.dao.IMaterialsNeedDao">
 
 	<insert id="createMaterialNeeds" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
 		 INSERT INTO materials_need_t (
-			  `id`,
 			  `title`,
 			  `materials_sort`,
 			  `materials_code`,
@@ -20,9 +19,9 @@
 			) 
 			VALUES
 		<foreach collection="list" item="list" index="index" separator=",">
-  			(#{list.id},
-  			 #{list.title},
+  			(#{list.title},
   			 #{list.materialsSort},
+  			 #{list.materialsCode},
   			 #{list.needCount},
   			 #{list.needDate},
   			 #{list.needUnit},
@@ -33,6 +32,41 @@
         </foreach>
 	</insert>
 	<delete id="deleteMaterialNeeds">
-		delete materials_need_t 
+		delete materials_need_t mnt where mnt.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+		#{list.id}
+		</foreach>
+		)
 	</delete>
+	
+	<update id="updateMaterialNeeds">
+		<foreach collection="list" item="list" index="index" separator=";">
+			update materials_need_t mnt set mnt.id = #{list.id}
+			<if test="list.title != null">
+				,mnt.title = #{list.title}
+			</if>
+			<if test="list.materialsSort != null">
+				,mnt.materials_sort = #{list.materialsSort}
+			</if>
+			<if test="list.materialsCode != null">
+				,mnt.materials_code = #{list.materialsCode}
+			</if>
+			<if test="list.needCount != null">
+				,mnt.need_count = #{list.needCount}
+			</if>
+			<if test="list.needDate != null">
+				,mnt.need_date = #{list.needDate}
+			</if>
+			<if test="list.needUnit != null">
+				,mnt.need_unit = #{list.needUnit}
+			</if>
+			<if test="list.technicalParameters != null">
+				,mnt.technical_parameters = #{list.technicalParameters}
+			</if>
+			<if test="list.remark != null">
+				,mnt.remark = #{list.remark}
+			</if>
+			where mnt.id = #{list.id}
+		</foreach>
+	</update>
 </mapper>

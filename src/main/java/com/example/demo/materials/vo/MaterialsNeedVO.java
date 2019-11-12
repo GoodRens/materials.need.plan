@@ -1,6 +1,11 @@
 package com.example.demo.materials.vo;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.example.demo.common.vo.CommonBaseVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +25,11 @@ public class MaterialsNeedVO extends CommonBaseVO {
 	/** 物料编码 */
 	private String materialsCode;
 	/** 需求数量 */
-	private String needCount;
+	private int needCount;
 	/** 需求日期 */
-	private String needDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private Date needDate;
 	/** 需求单位 */
 	private String needUnit;
 	/** 技术参数 */
