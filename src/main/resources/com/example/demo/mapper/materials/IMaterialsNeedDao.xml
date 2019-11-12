@@ -32,9 +32,9 @@
         </foreach>
 	</insert>
 	<delete id="deleteMaterialNeeds">
-		delete materials_need_t mnt where mnt.id in (
+		delete from materials_need_t mnt where mnt.id in (
 		<foreach collection="list" item="list" index="index" separator=",">
-		#{list.id}
+			#{list.id}
 		</foreach>
 		)
 	</delete>
