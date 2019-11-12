@@ -3,6 +3,7 @@ package com.example.demo.unit.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.unit.vo.UnitVO;
 
@@ -13,6 +14,6 @@ public interface IUnitDao {
 
 	void AddOrUpdateunit(List<UnitVO> unitList);
 
-	List<UnitVO> Queryunit(UnitVO unitList);
+	List<UnitVO> Queryunit(@Param("unit")UnitVO unitList);
 
 }
