@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.unit.dao.IUnitDao">
+
+	<insert id="AddOrUpdateunit">
+		insert into unit_t (id,name) values
+		<foreach collection="list" item="list" index="index"
+			separator=",">
+			(#{list.UnitID},
+			#{list.UnitName}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="Deleteunit">
+		delete from unit_t ut where ut.id in (
+		<foreach collection="list" item="list" index="index"
+			separator=",">
+			#{list.UnitID}
+		</foreach>
+		)
+	</delete>
+	<select id="Queryunit"
+		resultType="com.example.demo.unit.vo.UnitVO">
+		SELECT ut.ID AS UnitID,ut.NAME AS UnitName FROM unit_t ut
+		<if test="#{supplier} !=null and #{supplier.SupplierName}">
+			where ut.name = #{supplier.SupplierName}
+		</if>
+	</select>
+</mapper>

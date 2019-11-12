@@ -48,7 +48,7 @@ public class UnitService implements IUnitService {
 	}
 
 	@Override
-	public CommonResultVO<?> Queryunit(HttpServletRequest request, List<UnitVO> unitList) {
+	public CommonResultVO<?> Queryunit(HttpServletRequest request, UnitVO unit) {
 		CommonResultVO<UnitVO> result = new CommonResultVO<UnitVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -57,7 +57,7 @@ public class UnitService implements IUnitService {
 			result.setMsg("您还未登录！");
 			return result;
 		}
-		List<UnitVO> units = unitDao.Queryunit(unitList);
+		List<UnitVO> units = unitDao.Queryunit(unit);
 		return null;
 	}
 

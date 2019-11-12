@@ -30,5 +30,5 @@ public interface IUnitService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> Queryunit(HttpServletRequest request, List<UnitVO> unitList);
+	CommonResultVO<?> Queryunit(HttpServletRequest request, UnitVO unit);
 }

@@ -3,6 +3,7 @@ package com.example.demo.supplier.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.supplier.vo.SupplierVO;
 
@@ -30,6 +31,6 @@ public interface ISupplierDao {
 	 * @param supplier
 	 * @return
 	 */
-	List<SupplierVO> QueryWl(SupplierVO supplier);
+	List<SupplierVO> QueryWl(@Param("supplier") SupplierVO supplier);
 
 }

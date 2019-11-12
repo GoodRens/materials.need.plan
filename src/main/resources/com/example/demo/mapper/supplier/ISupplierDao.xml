@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.supplier.dao.ISupplierDao">
+
+	<insert id="AddOrUpdateSupplier">
+		insert into supplier_t (id,name) values 
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.SupplierID},
+  			 #{list.SupplierName}
+  			 )
+        </foreach>
+	</insert>
+
+	<delete id="DeleteSupplier">
+		delete from supplier_t st where st.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list.SupplierID}
+		</foreach>
+		) 
+	</delete>
+	<select id="QueryWl" resultType="com.example.demo.supplier.vo.SupplierVO">
+		SELECT ST.ID AS SupplierID,ST.NAME AS SupplierName  FROM supplier_t st 
+		<if test="#{supplier} !=null and #{supplier.SupplierName}">
+			where ST.name  = #{supplier.SupplierName}
+		</if>
+	</select>
+</mapper>

@@ -13,6 +13,6 @@ public interface IUnitDao {
 
 	void AddOrUpdateunit(List<UnitVO> unitList);
 
-	List<UnitVO> Queryunit(List<UnitVO> unitList);
+	List<UnitVO> Queryunit(UnitVO unitList);
 
 }

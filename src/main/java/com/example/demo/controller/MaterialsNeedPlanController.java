@@ -279,8 +279,8 @@ public class MaterialsNeedPlanController {
 
 	@ApiOperation(value = "查询物料单位", notes = "无name时查询所有")
 	@RequestMapping(value = "/Queryunit", method = RequestMethod.POST)
-	public CommonResultVO<?> Queryunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
-		return unitService.Queryunit(request, unitList);
+	public CommonResultVO<?> Queryunit(HttpServletRequest request, @RequestBody UnitVO unit) {
+		return unitService.Queryunit(request, unit);
 	}
 
 }
