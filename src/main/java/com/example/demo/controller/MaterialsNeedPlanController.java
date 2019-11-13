@@ -315,21 +315,21 @@ public class MaterialsNeedPlanController {
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
-	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@ApiOperation(value = "创建物料分类", notes = "创建物料分类")
 	@RequestMapping(value = "/AddOrUpdateWlCategory", method = RequestMethod.POST)
 	public CommonResultVO<?> addOrUpdateWlCategory(HttpServletRequest request,
 			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
 		return materialsCategoryService.addOrUpdateWlCategory(request, materialsCategoryList);
 	}
 
-	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@ApiOperation(value = "删除物料分类", notes = "id必传")
 	@RequestMapping(value = "/DeleteWlCategory", method = RequestMethod.POST)
 	public CommonResultVO<?> deleteWlCategory(HttpServletRequest request,
 			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
 		return materialsCategoryService.deleteWlCategory(request, materialsCategoryList);
 	}
 
-	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@ApiOperation(value = "查询物料分类", notes = "无名称时查所有")
 	@RequestMapping(value = "/QueryWlCategory", method = RequestMethod.POST)
 	public CommonResultVO<?> queryWlCategory(HttpServletRequest request,
 			@RequestBody MaterialsCategoryVO materialsCategory) {
