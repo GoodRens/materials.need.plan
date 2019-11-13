@@ -23,7 +23,9 @@
 			  `fixate_supplier`,
 			  `inventory_organization`,
 			  `material_trace_code`,
-			  `remark`
+			  `remark`,
+			   creater_by,
+			   create_date
 			) 
 			VALUES
 		<foreach collection="list" item="list" index="index" separator=",">
@@ -44,7 +46,9 @@
   			 #{list.FixedSupplier},
   			 #{list.PlanStockOrganize},
   			 #{list.materialTraceCode},
-  			 #{list.PlanMemo})
+  			 #{list.PlanMemo}, 
+  			 #{list.createrBy},
+  			 now())
         </foreach>
 	</insert>
 	<delete id="deleteNeedPlan">

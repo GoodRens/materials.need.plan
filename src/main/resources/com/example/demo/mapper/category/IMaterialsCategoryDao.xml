@@ -6,11 +6,15 @@
 
 	<insert id="addOrUpdateWlCategory" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
 		 INSERT INTO materials_category_t (
-			  `name`
+			  `name`,
+			   creater_by,
+			   create_date
 			) 
 			VALUES
 		<foreach collection="list" item="list" index="index" separator=",">
-  			(#{list.WlCategoryName})
+  			(#{list.WlCategoryName},
+  			 #{list.createrBy},
+  			 now())
         </foreach>
 	</insert>
 	<delete id="deleteWlCategory">

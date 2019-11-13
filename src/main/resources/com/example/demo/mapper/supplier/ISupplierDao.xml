@@ -5,10 +5,15 @@
 <mapper namespace="com.example.demo.supplier.dao.ISupplierDao">
 
 	<insert id="AddOrUpdateSupplier">
-		insert into supplier_t (name) values 
+		insert into supplier_t (
+				name,
+				creater_by,
+			    create_date) values 
 		<foreach collection="list" item="list" index="index" separator=",">
   			(
-  			 #{list.SupplierName}
+  			 #{list.SupplierName}, 
+  			 #{list.createrBy},
+  			 now()
   			 )
         </foreach>
 	</insert>

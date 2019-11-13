@@ -5,11 +5,16 @@
 <mapper namespace="com.example.demo.unit.dao.IUnitDao">
 
 	<insert id="AddOrUpdateunit">
-		insert into unit_t (name) values
+		insert into unit_t (
+				name,
+				creater_by,
+			    create_date) values
 		<foreach collection="list" item="list" index="index"
 			separator=",">
 			(
-			#{list.UnitName}
+			#{list.UnitName},
+			#{list.createrBy},
+  			 now()
 			)
 		</foreach>
 	</insert>

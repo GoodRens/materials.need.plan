@@ -53,6 +53,9 @@
 		  u.`last_update_by` AS lastUpdateBy,
 		  u.`last_update_date` AS lastUpdateDate 
 		FROM
-		  user_t u 
+		  user_t u where 1 = 1
+		<if test = "name != null">
+			and u.name = #{name}
+		</if>
 	</select>
 </mapper>
