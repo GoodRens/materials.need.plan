@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
@@ -13,6 +14,7 @@ import com.example.demo.materials.service.IMaterialsPlanService;
 import com.example.demo.materials.vo.MaterialsPlanVO;
 import com.mysql.cj.util.StringUtils;
 
+@Service
 public class MaterialsPlanService implements IMaterialsPlanService {
 
 	@Autowired

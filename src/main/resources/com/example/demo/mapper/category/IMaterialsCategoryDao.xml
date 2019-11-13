@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.materials.category.dao.IMaterialsCategoryDao">
+
+	<insert id="addOrUpdateWlCategory" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO materials_category_t (
+			  `name`
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.WlCategoryName})
+        </foreach>
+	</insert>
+	<delete id="deleteWlCategory">
+		delete from materials_category_t mct where mct.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list.id}
+		</foreach>
+		)
+	</delete>
+	
+	<select id="queryWlCategory" resultType="com.example.demo.materials.category.vo.MaterialsCategoryVO">
+		select mct.id as id,mct.name as WlCategoryName from materials_category_t mct where  1=1 
+		<if test="WlCategoryName != null ">
+			and mct.name = #{WlCategoryName}
+		</if>
+	</select>
+</mapper>

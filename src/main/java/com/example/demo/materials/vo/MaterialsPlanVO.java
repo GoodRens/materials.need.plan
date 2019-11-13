@@ -1,6 +1,11 @@
 package com.example.demo.materials.vo;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.example.demo.common.vo.CommonBaseVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,11 +27,11 @@ public class MaterialsPlanVO extends CommonBaseVO {
 	/** 备注 */
 	private String PlanMemo;
 	/** 需求部门ID */
-	private String PlanDepartID;
+	private int PlanDepartID;
 	/** 需求部门名称 */
 	private String PlanDepartName;
 	/** 需求人员 */
-	private String PlanUserID;
+	private int PlanUserID;
 	/** 需求人员 */
 	private String PlanUserName;
 	/**
@@ -38,11 +43,11 @@ public class MaterialsPlanVO extends CommonBaseVO {
 	/** 需求计划状态 自由(Free) 已删除(Delete) 已提交 汇总(Submit) 已计划 (Plan) */
 	private String PlanStatus;
 	/** 物料分类id */
-	private String WlCategoryID;
+	private int WlCategoryID;
 	/** 物料分类名称 */
 	private String WlCategoryName;
 	/** 物料id */
-	private String WlID;
+	private int WlID;
 	/** 物料名称 */
 	private String WlName;
 	/** 规格 */
@@ -54,19 +59,21 @@ public class MaterialsPlanVO extends CommonBaseVO {
 	/** 单位名称 */
 	private String UnitName;
 	/** 数量 */
-	private String Number;
+	private int Number;
 	/** 需求月份 需求计划类型为年度计划，此字段必填，格式为“年度+月度 */
 	private String PlanMonth;
 	/** 需求日期 */
-	private String PlanDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private Date PlanDate;
 	/** 货源是否固定 bool类型 默认为是 */
 	private String IsSupplierFixed;
 	/** 期望供应商id */
-	private String WishSupplier;
+	private int WishSupplier;
 	/** 期望供应商名称 */
 	private String WishSupplierName;
 	/** 固定供应商id */
-	private String FixedSupplier;
+	private int FixedSupplier;
 	/** 固定供应商名称 */
 	private String FixedSupplierName;
 	/** 需求库存组 */

@@ -55,27 +55,27 @@
 		)
 	</delete>
 	
-	<select id="queryNeedPlan">
+	<select id="queryNeedPlan" resultType="com.example.demo.materials.vo.MaterialsPlanVO">
 		SELECT 
-		  mpt.`id`,
-		  mpt.`plan_status`,
-		  mpt.`is_within_need`,
-		  mpt.`plan_user_id`,
-		  mpt.`plan_department_id`,
-		  mpt.`plan_type`,
+		  mpt.`id` as id ,
+		  mpt.`plan_status` as PlanStatus ,
+		  mpt.`is_within_need` as IsBudget,
+		  mpt.`plan_user_id` as PlanUserID,
+		  mpt.`plan_department_id` as PlanDepartID,
+		  mpt.`plan_type` as PlanType,
 		  mpt.`plan_specification`,
-		  mpt.`plan_version`,
-		  mpt.`plan_unit`,
-		  mpt.`plan_count`,
-		  mpt.`plan_month`,
-		  mpt.`plan_date`,
-		  mpt.`is_supply_confirm`,
-		  mpt.`plan_code`,
-		  mpt.`expecte_supplier`,
-		  mpt.`fixate_supplier`,
-		  mpt.`inventory_organization`,
-		  mpt.`material_trace_code`,
-		  mpt.`remark` 
+		  mpt.`plan_version` as Specs,
+		  mpt.`plan_unit` as Model,
+		  mpt.`plan_count` as UnitID,
+		  mpt.`plan_month` as PlanMonth,
+		  mpt.`plan_date` as PlanDate,
+		  mpt.`is_supply_confirm` as IsSupplierFixed,
+		  mpt.`plan_code` as PlanCode,
+		  mpt.`expecte_supplier` as WishSupplier,
+		  mpt.`fixate_supplier` as FixedSupplier,
+		  mpt.`inventory_organization` as PlanStockOrganize,
+		  mpt.`material_trace_code` as materialTraceCode,
+		  mpt.`remark` as PlanMemo 
 		FROM
 		  materials_plan_t mpt 
 		WHERE 1 = 1 

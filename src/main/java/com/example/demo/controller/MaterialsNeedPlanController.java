@@ -19,8 +19,12 @@ import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVO;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
+import com.example.demo.materials.category.service.IMaterialsCategoryService;
+import com.example.demo.materials.category.vo.MaterialsCategoryVO;
 import com.example.demo.materials.service.IMaterialsNeedService;
+import com.example.demo.materials.service.IMaterialsPlanService;
 import com.example.demo.materials.vo.MaterialsNeedVO;
+import com.example.demo.materials.vo.MaterialsPlanVO;
 import com.example.demo.relation.service.IDepartmentRoleRelationService;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.service.IUserRoleRelationService;
@@ -73,6 +77,12 @@ public class MaterialsNeedPlanController {
 
 	@Autowired
 	private IUnitService unitService;
+
+	@Autowired
+	private IMaterialsPlanService materialsPlanService;
+
+	@Autowired
+	private IMaterialsCategoryService materialsCategoryService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -283,4 +293,49 @@ public class MaterialsNeedPlanController {
 		return unitService.Queryunit(request, unit);
 	}
 
+	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@RequestMapping(value = "/AddNeedPlan", method = RequestMethod.POST)
+	public CommonResultVO<?> AddNeedPlan(HttpServletRequest request,
+			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
+		return materialsPlanService.AddNeedPlan(request, materialsNeedList);
+	}
+
+	@ApiOperation(value = "删除物料计划", notes = "id必传")
+	@RequestMapping(value = "/DeleteNeedPlan", method = RequestMethod.POST)
+	public CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request,
+			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
+		return materialsPlanService.DeleteNeedPlan(request, materialsNeedList);
+	}
+
+	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@RequestMapping(value = "/QueryNeedPlan", method = RequestMethod.POST)
+	public CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, @RequestBody MaterialsPlanVO materialsNeed) {
+		return materialsPlanService.QueryNeedPlan(request, materialsNeed);
+	}
+
+	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@RequestMapping(value = "/AddOrUpdateWlCategory", method = RequestMethod.POST)
+	public CommonResultVO<?> addOrUpdateWlCategory(HttpServletRequest request,
+			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
+		return materialsCategoryService.addOrUpdateWlCategory(request, materialsCategoryList);
+	}
+
+	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@RequestMapping(value = "/DeleteWlCategory", method = RequestMethod.POST)
+	public CommonResultVO<?> deleteWlCategory(HttpServletRequest request,
+			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
+		return materialsCategoryService.deleteWlCategory(request, materialsCategoryList);
+	}
+
+	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
+	@RequestMapping(value = "/QueryWlCategory", method = RequestMethod.POST)
+	public CommonResultVO<?> queryWlCategory(HttpServletRequest request,
+			@RequestBody MaterialsCategoryVO materialsCategory) {
+		return materialsCategoryService.queryWlCategory(request, materialsCategory);
+	}
+
+	/******************** 华丽丽的分割线 ***************************/
+	/******************** 华丽丽的分割线 ***************************/
 }
