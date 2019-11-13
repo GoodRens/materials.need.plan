@@ -28,7 +28,7 @@ public interface IMaterialsPlanService {
 	CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
 
 	/**
-	 * 批量更新物料计划
+	 * 查询物料计划
 	 * 
 	 * @param request
 	 * @param materialsNeedList

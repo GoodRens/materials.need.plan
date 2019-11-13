@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.materials.dao.IMaterialsPlanDao">
+
+	<insert id="addNeedPlan" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		 INSERT INTO materials_plan_t (
+			  `plan_status`,
+			  `is_within_need`,
+			  `plan_user_id`,
+			  `plan_department_id`,
+			  `plan_type`,
+			  `plan_specification`,
+			  `plan_version`,
+			  `plan_unit`,
+			  `plan_count`,
+			  `plan_month`,
+			  `plan_date`,
+			  `is_supply_confirm`,
+			  `plan_code`,
+			  `expecte_supplier`,
+			  `fixate_supplier`,
+			  `inventory_organization`,
+			  `material_trace_code`,
+			  `remark`
+			) 
+			VALUES
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.PlanStatus},
+  			 #{list.IsBudget},
+  			 #{list.PlanUserID},
+  			 #{list.PlanDepartID},
+  			 #{list.PlanType},
+  			 #{list.Specs},
+  			 #{list.Model},
+  			 #{list.UnitID},
+  			 #{list.Number},
+  			 #{list.PlanMonth},
+  			 #{list.PlanDate},
+  			 #{list.IsSupplierFixed},
+  			 #{list.PlanCode},
+  			 #{list.WishSupplier},
+  			 #{list.FixedSupplier},
+  			 #{list.PlanStockOrganize},
+  			 #{list.materialTraceCode},
+  			 #{list.PlanMemo})
+        </foreach>
+	</insert>
+	<delete id="deleteNeedPlan">
+		delete from materials_plan_t mpt where mpt.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list.id}
+		</foreach>
+		)
+	</delete>
+	
+	<select id="queryNeedPlan">
+		SELECT 
+		  mpt.`id`,
+		  mpt.`plan_status`,
+		  mpt.`is_within_need`,
+		  mpt.`plan_user_id`,
+		  mpt.`plan_department_id`,
+		  mpt.`plan_type`,
+		  mpt.`plan_specification`,
+		  mpt.`plan_version`,
+		  mpt.`plan_unit`,
+		  mpt.`plan_count`,
+		  mpt.`plan_month`,
+		  mpt.`plan_date`,
+		  mpt.`is_supply_confirm`,
+		  mpt.`plan_code`,
+		  mpt.`expecte_supplier`,
+		  mpt.`fixate_supplier`,
+		  mpt.`inventory_organization`,
+		  mpt.`material_trace_code`,
+		  mpt.`remark` 
+		FROM
+		  materials_plan_t mpt 
+		WHERE 1 = 1 
+		<if test="PlanCode != null">
+			and mpt.plan_code = #{PlanCode}
+		</if>
+		<if test="PlanType != null">
+			and mpt.plan_type = #{PlanType}
+		</if>
+		<if test="PlanType != null">
+			and mpt.plan_type = #{PlanType}
+		</if>
+		<if test="PlanDepartID != null">
+			and mpt.plan_department_id = #{PlanDepartID}
+		</if>
+		<if test="PlanMonth != null">
+			and mpt.plan_month = #{PlanMonth}
+		</if>
+	</select>
+</mapper>

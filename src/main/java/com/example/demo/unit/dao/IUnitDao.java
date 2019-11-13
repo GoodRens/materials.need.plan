@@ -10,7 +10,7 @@ import com.example.demo.unit.vo.UnitVO;
 @Mapper
 public interface IUnitDao {
 
-	List<UnitVO> Deleteunit(List<UnitVO> unitList);
+	void Deleteunit(List<UnitVO> unitList);
 
 	void AddOrUpdateunit(List<UnitVO> unitList);
 
