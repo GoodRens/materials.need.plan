@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.dao.IUserInfoDao;
@@ -77,7 +78,6 @@ public class UserInfoService implements IUserInfoService {
 			result.setMsg("用户名已存在！");
 			return result;
 		}
-
 		userInfoDao.insertUser(userInfo);
 		log.info(userInfo.getName() + "注册成功信息：" + JSONObject.toJSONString(userInfo));
 		result.setCode(200);

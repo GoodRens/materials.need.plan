@@ -16,7 +16,7 @@ public interface IMaterialsPlanService {
 	 * @param materialsNeedList
 	 * @return
 	 */
-	CommonResultVO<?> AddNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
+	CommonResultVO<?> addNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
 
 	/**
 	 * 批量删除物料计划
@@ -25,7 +25,7 @@ public interface IMaterialsPlanService {
 	 * @param materialsNeedList
 	 * @return
 	 */
-	CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
+	CommonResultVO<?> deleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsNeedList);
 
 	/**
 	 * 查询物料计划
@@ -34,5 +34,5 @@ public interface IMaterialsPlanService {
 	 * @param materialsNeedList
 	 * @return
 	 */
-	CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, MaterialsPlanVO materialsNeed);
+	CommonResultVO<?> queryNeedPlan(HttpServletRequest request, MaterialsPlanVO materialsNeed);
 }

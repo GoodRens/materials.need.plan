@@ -27,7 +27,7 @@
   			 #{list.needUnit},
   			 #{list.technicalParameters},
   			 #{list.remark},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>

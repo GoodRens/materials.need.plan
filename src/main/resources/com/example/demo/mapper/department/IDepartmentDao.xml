@@ -12,7 +12,7 @@
 		  d.`is_exist_childen` AS isexistChilden,
 		  d.`parent_id` AS parentId,
 		  d.`department_level` AS departmentLevel,
-		  d.`creater_by` AS createrBy,
+		  d.`creater_by` AS createBy,
 		  d.`create_date` AS createDate,
 		  d.`last_update_by` AS lastupDateBy,
 		  d.`last_update_date` AS lastupDateDate 
@@ -51,7 +51,7 @@
   			 #{list.isExistChilden},
   			 #{list.parentId},
   			 #{list.departmentLevel},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -72,7 +72,7 @@
 		  d.`is_exist_childen` AS isexistChilden,
 		  d.`parent_id` AS parentId,
 		  d.`department_level` AS departmentLevel,
-		  d.`creater_by` AS createrBy,
+		  d.`creater_by` AS createBy,
 		  d.`create_date` AS createDate,
 		  d.`last_update_by` AS lastupDateBy,
 		  d.`last_update_date` AS lastupDateDate 
@@ -93,7 +93,7 @@
 		  dt.`is_exist_childen` AS isexistChilden,
 		  dt.`parent_id` AS parentId,
 		  dt.`department_level` AS departmentLevel,
-		  dt.`creater_by` AS createrBy,
+		  dt.`creater_by` AS createBy,
 		  dt.`create_date` AS createDate,
 		  dt.`last_update_by` AS lastupDateBy,
 		  dt.`last_update_date` AS lastupDateDate 

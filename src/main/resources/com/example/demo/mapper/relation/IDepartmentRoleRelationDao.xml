@@ -15,7 +15,7 @@
 		<foreach collection="list" item="list" index="index" separator=",">
   			(#{list.departmentId},
   			 #{list.roleId},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -28,8 +28,12 @@
 	
 	<select id="getDepartmentRoleRelationByUR" resultType="com.example.demo.relation.vo.DepartmentRoleRelationVO">
 		select 
-			drrt.role_id,
-			drrt.department_id 
+			drrt.role_id as roleId,
+			drrt.department_id AS departmentId,
+			drrt.creater_by as createBy,
+		    drrt.create_date AS createDate,
+		    drrt.`last_update_by` AS lastUpdateBy,
+		    drrt.`last_update_date` AS lastUpdateDate 
 		from department_role_relation_t drrt 
 		where drrt.role_id = #{departmentRoleRelation.roleId} 
 			and drrt.department_id = #{departmentRoleRelation.departmentId}

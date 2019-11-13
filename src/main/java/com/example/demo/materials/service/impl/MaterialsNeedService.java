@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.materials.dao.IMaterialsNeedDao;
@@ -35,6 +36,8 @@ public class MaterialsNeedService implements IMaterialsNeedService {
 			result.setMsg("传入的数据为空或格式不正确！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, materialsNeedList);
 		materialsNeedDao.createMaterialNeeds(materialsNeedList);
 		result.setCode(200);
 		result.setMsg("添加成功！");

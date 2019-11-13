@@ -259,38 +259,38 @@ public class MaterialsNeedPlanController {
 	@RequestMapping(value = "/AddOrUpdateSupplier", method = RequestMethod.POST)
 	public CommonResultVO<?> AddOrUpdateSupplier(HttpServletRequest request,
 			@RequestBody List<SupplierVO> supplierList) {
-		return supplierService.AddOrUpdateSupplier(request, supplierList);
+		return supplierService.addOrUpdateSupplier(request, supplierList);
 	}
 
 	@ApiOperation(value = "删除供应商", notes = "id必传")
 	@RequestMapping(value = "/DeleteSupplier", method = RequestMethod.POST)
 	public CommonResultVO<?> DeleteSupplier(HttpServletRequest request, @RequestBody List<SupplierVO> supplierList) {
-		return supplierService.DeleteSupplier(request, supplierList);
+		return supplierService.deleteSupplier(request, supplierList);
 	}
 
 	@ApiOperation(value = "查询供应商", notes = "name无时查询所有")
 	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
 	public CommonResultVO<?> QueryWl(HttpServletRequest request, @RequestBody SupplierVO supplier) {
-		return supplierService.QueryWl(request, supplier);
+		return supplierService.queryWl(request, supplier);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "添加物料单位", notes = "有id时更新，无时新建")
 	@RequestMapping(value = "/AddOrUpdateunit", method = RequestMethod.POST)
 	public CommonResultVO<?> AddOrUpdateunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
-		return unitService.AddOrUpdateunit(request, unitList);
+		return unitService.addOrUpdateunit(request, unitList);
 	}
 
 	@ApiOperation(value = "删除物料单位", notes = "id必传")
 	@RequestMapping(value = "/Deleteunit", method = RequestMethod.POST)
 	public CommonResultVO<?> Deleteunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
-		return unitService.Deleteunit(request, unitList);
+		return unitService.deleteunit(request, unitList);
 	}
 
 	@ApiOperation(value = "查询物料单位", notes = "无name时查询所有")
 	@RequestMapping(value = "/Queryunit", method = RequestMethod.POST)
 	public CommonResultVO<?> Queryunit(HttpServletRequest request, @RequestBody UnitVO unit) {
-		return unitService.Queryunit(request, unit);
+		return unitService.queryunit(request, unit);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
@@ -298,20 +298,20 @@ public class MaterialsNeedPlanController {
 	@RequestMapping(value = "/AddNeedPlan", method = RequestMethod.POST)
 	public CommonResultVO<?> AddNeedPlan(HttpServletRequest request,
 			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
-		return materialsPlanService.AddNeedPlan(request, materialsNeedList);
+		return materialsPlanService.addNeedPlan(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "删除物料计划", notes = "id必传")
 	@RequestMapping(value = "/DeleteNeedPlan", method = RequestMethod.POST)
 	public CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request,
 			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
-		return materialsPlanService.DeleteNeedPlan(request, materialsNeedList);
+		return materialsPlanService.deleteNeedPlan(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
 	@RequestMapping(value = "/QueryNeedPlan", method = RequestMethod.POST)
 	public CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, @RequestBody MaterialsPlanVO materialsNeed) {
-		return materialsPlanService.QueryNeedPlan(request, materialsNeed);
+		return materialsPlanService.queryNeedPlan(request, materialsNeed);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.role.dao.IRoleDao;
@@ -50,6 +51,8 @@ public class RoleService implements IRoleService {
 			result.setMsg("角色名称为空或角色名称已存在！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, roleList);
 		roleDao.createRoles(roleList);
 		result.setCode(200);
 		if (StringUtils.isNullOrEmpty(resultStr)) {

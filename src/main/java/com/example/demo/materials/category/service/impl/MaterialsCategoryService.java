@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.materials.category.dao.IMaterialsCategoryDao;
@@ -36,6 +37,8 @@ public class MaterialsCategoryService implements IMaterialsCategoryService {
 			result.setMsg("数据格式不正确！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, materialsCategoryList);
 		materialsCategoryDao.addOrUpdateWlCategory(materialsCategoryList);
 		result.setCode(200);
 		result.setMsg("添加成功！");

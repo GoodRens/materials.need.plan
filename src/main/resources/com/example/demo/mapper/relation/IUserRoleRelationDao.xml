@@ -15,7 +15,7 @@
 		<foreach collection="list" item="list" index="index" separator=",">
   			(#{list.roleId},
   			 #{list.userId},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -28,7 +28,11 @@
 	<select id="getUserRoleRelationsByUR" resultType="com.example.demo.relation.vo.UserRoleRelationVO">
 		SELECT 
 		  urt.role_id AS roleId,
-		  urt.user_id AS userId 
+		  urt.user_id AS userId,
+		  urt.creater_by as createBy,
+		  urt.create_date AS createDate,
+		  urt.`last_update_by` AS lastUpdateBy,
+		  urt.`last_update_date` AS lastUpdateDate  
 		FROM
 		  user_role_relation_t urt 
 		WHERE urt.role_id = #{userRoleRelation.roleId} 

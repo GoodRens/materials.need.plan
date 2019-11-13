@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.supplier.dao.ISupplierDao;
@@ -21,7 +22,7 @@ public class SupplierService implements ISupplierService {
 	private ISupplierDao supplierDao;
 
 	@Override
-	public CommonResultVO<?> AddOrUpdateSupplier(HttpServletRequest request, List<SupplierVO> supplierList) {
+	public CommonResultVO<?> addOrUpdateSupplier(HttpServletRequest request, List<SupplierVO> supplierList) {
 		CommonResultVO<SupplierVO> result = new CommonResultVO<SupplierVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -46,6 +47,8 @@ public class SupplierService implements ISupplierService {
 			result.setMsg("供应商已存在！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, supplierList);
 		List<SupplierVO> suppliers = supplierDao.AddOrUpdateSupplier(supplierList);
 		result.setCode(200);
 		result.setMsg("添加成功！");
@@ -54,7 +57,7 @@ public class SupplierService implements ISupplierService {
 	}
 
 	@Override
-	public CommonResultVO<?> DeleteSupplier(HttpServletRequest request, List<SupplierVO> supplierList) {
+	public CommonResultVO<?> deleteSupplier(HttpServletRequest request, List<SupplierVO> supplierList) {
 		CommonResultVO<SupplierVO> result = new CommonResultVO<SupplierVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -82,7 +85,7 @@ public class SupplierService implements ISupplierService {
 	}
 
 	@Override
-	public CommonResultVO<?> QueryWl(HttpServletRequest request, SupplierVO supplier) {
+	public CommonResultVO<?> queryWl(HttpServletRequest request, SupplierVO supplier) {
 		CommonResultVO<SupplierVO> result = new CommonResultVO<SupplierVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);

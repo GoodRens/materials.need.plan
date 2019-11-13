@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.vo.UserInfoVO;
@@ -46,6 +47,8 @@ public class UserRoleRelationService implements IUserRoleRelationService {
 			result.setMsg("用户已拥有以上角色！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, userRoleRelation);
 		userRoleRelationDao.createUserRoleRelations(userRoleRelation);
 		result.setCode(200);
 		if (isExist) {

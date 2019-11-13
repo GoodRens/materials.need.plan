@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.unit.dao.IUnitDao;
@@ -20,7 +21,7 @@ public class UnitService implements IUnitService {
 	private IUnitDao unitDao;
 
 	@Override
-	public CommonResultVO<?> AddOrUpdateunit(HttpServletRequest request, List<UnitVO> unitList) {
+	public CommonResultVO<?> addOrUpdateunit(HttpServletRequest request, List<UnitVO> unitList) {
 		CommonResultVO<UnitVO> result = new CommonResultVO<UnitVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -44,6 +45,8 @@ public class UnitService implements IUnitService {
 			result.setMsg("数据格式不正确！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, unitList);
 		unitDao.AddOrUpdateunit(unitList);
 		result.setCode(200);
 		result.setMsg("添加成功！");
@@ -51,7 +54,7 @@ public class UnitService implements IUnitService {
 	}
 
 	@Override
-	public CommonResultVO<?> Deleteunit(HttpServletRequest request, List<UnitVO> unitList) {
+	public CommonResultVO<?> deleteunit(HttpServletRequest request, List<UnitVO> unitList) {
 		CommonResultVO<UnitVO> result = new CommonResultVO<UnitVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -77,7 +80,7 @@ public class UnitService implements IUnitService {
 	}
 
 	@Override
-	public CommonResultVO<?> Queryunit(HttpServletRequest request, UnitVO unit) {
+	public CommonResultVO<?> queryunit(HttpServletRequest request, UnitVO unit) {
 		CommonResultVO<UnitVO> result = new CommonResultVO<UnitVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);

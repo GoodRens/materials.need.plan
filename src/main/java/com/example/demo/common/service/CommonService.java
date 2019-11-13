@@ -9,45 +9,49 @@ import com.example.demo.common.vo.CommonBaseVO;
 public class CommonService {
 	/**
 	 * 为参数设置createBy--单VO
+	 * @param <T>
 	 * 
 	 * @param request
 	 * @param commonBaseVO
 	 */
-	public static void addCreateByToParam(HttpServletRequest request, CommonBaseVO commonBaseVO) {
-		commonBaseVO.setCreaterBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
+	public static <T> void addCreateByToParam(HttpServletRequest request, T commonBaseVO) {
+		((CommonBaseVO) commonBaseVO).setCreateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
 	}
 
 	/**
 	 * 为参数设置createBy--List
+	 * @param <T>
 	 * 
 	 * @param request
 	 * @param commonBaseVOList
 	 */
-	public static void addCreateByToParamList(HttpServletRequest request, List<CommonBaseVO> commonBaseVOList) {
-		for (CommonBaseVO commonBaseVO : commonBaseVOList) {
-			commonBaseVO.setCreaterBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
+	public static <T> void addCreateByToParamList(HttpServletRequest request, List<T> commonBaseVOList) {
+		for (T commonBaseVO : commonBaseVOList) {
+			((CommonBaseVO) commonBaseVO).setCreateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
 		}
 	}
 
 	/**
 	 * 为参数设置lastUpdateBy--单VO
+	 * @param <T>
 	 * 
 	 * @param request
 	 * @param commonBaseVO
 	 */
-	public static void addLastUpdateByToParam(HttpServletRequest request, CommonBaseVO commonBaseVO) {
-		commonBaseVO.setLastUpdateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
+	public static <T> void addLastUpdateByToParam(HttpServletRequest request, T commonBaseVO) {
+		((CommonBaseVO) commonBaseVO).setLastUpdateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
 	}
 
 	/**
 	 * 为参数设置lastUpdateBy--List
+	 * @param <T>
 	 * 
 	 * @param request
 	 * @param commonBaseVO
 	 */
-	public static void addLastUpdateByToParamList(HttpServletRequest request, List<CommonBaseVO> commonBaseVOList) {
-		for (CommonBaseVO commonBaseVO : commonBaseVOList) {
-			commonBaseVO.setLastUpdateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
+	public static <T> void addLastUpdateByToParamList(HttpServletRequest request, List<T> commonBaseVOList) {
+		for (T commonBaseVO : commonBaseVOList) {
+			((CommonBaseVO) commonBaseVO).setLastUpdateBy(Integer.parseInt(UserRequestContext.getCurrentUser(request)));
 		}
 	}
 }

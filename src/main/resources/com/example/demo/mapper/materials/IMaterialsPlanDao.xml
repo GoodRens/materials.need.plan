@@ -47,7 +47,7 @@
   			 #{list.PlanStockOrganize},
   			 #{list.materialTraceCode},
   			 #{list.PlanMemo}, 
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -79,7 +79,11 @@
 		  mpt.`fixate_supplier` as FixedSupplier,
 		  mpt.`inventory_organization` as PlanStockOrganize,
 		  mpt.`material_trace_code` as materialTraceCode,
-		  mpt.`remark` as PlanMemo 
+		  mpt.`remark` as PlanMemo ,
+		  mpt.creater_by as createBy,
+		  mpt.create_date AS createDate,
+		  mpt.`last_update_by` AS lastUpdateBy,
+		  mpt.`last_update_date` AS lastUpdateDate 
 		FROM
 		  materials_plan_t mpt 
 		WHERE 1 = 1 

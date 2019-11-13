@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.dao.IDepartmentDao;
@@ -71,6 +72,8 @@ public class DepartmentService implements IDepartmentService {
 				return result;
 			}
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, departmentVos);
 		String resultStr = "";
 		List<DepartmentVO> departments = departmentDao.getDepartmentsByNames(departmentVos);
 		if (departments.isEmpty()) {
@@ -126,7 +129,7 @@ public class DepartmentService implements IDepartmentService {
 	 * @return
 	 */
 	public void deleteDepartmentsOfRecursion(List<Integer> idList) {
-		if(idList.isEmpty()) {
+		if (idList.isEmpty()) {
 			return;
 		}
 		// 删除父部门

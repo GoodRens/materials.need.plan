@@ -13,7 +13,7 @@
 			VALUES
 		<foreach collection="list" item="list" index="index" separator=",">
   			(#{list.WlCategoryName},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -26,7 +26,14 @@
 	</delete>
 	
 	<select id="queryWlCategory" resultType="com.example.demo.materials.category.vo.MaterialsCategoryVO">
-		select mct.id as id,mct.name as WlCategoryName from materials_category_t mct where  1=1 
+		select 
+			mct.id as id,
+			mct.name as WlCategoryName,
+			mct.creater_by as createBy,
+			mct.create_date AS createDate,
+		    mct.`last_update_by` AS lastUpdateBy,
+		    mct.`last_update_date` AS lastUpdateDate 
+		from materials_category_t mct where  1=1 
 		<if test="WlCategoryName != null ">
 			and mct.name = #{WlCategoryName}
 		</if>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.vo.DepartmentVO;
@@ -47,6 +48,8 @@ public class DepartmentUserRelationService implements IDepartmentUserRelationSer
 			result.setMsg("用户已属于以上部门！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, departmentUserRelationList);
 		departmentUserRelationDao.createDepartmentUserRelations(departmentUserRelationList);
 		if (isExist) {
 			result.setMsg("部分部门已经存在，部分部门用户添加成功！");

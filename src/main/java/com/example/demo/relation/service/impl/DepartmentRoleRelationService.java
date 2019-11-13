@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.vo.DepartmentVO;
@@ -54,6 +55,8 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 			result.setMsg("数据格式不正确或部门角色已存在！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, departmentRoleRelationList);
 		departmentRoleRelationDao.createDepartmentRoleRelations(departmentRoleRelationList);
 		result.setCode(200);
 		if (isExist) {

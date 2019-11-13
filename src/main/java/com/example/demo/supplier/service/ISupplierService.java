@@ -14,7 +14,7 @@ public interface ISupplierService {
 	 * 
 	 * @return
 	 */
-	CommonResultVO<?> AddOrUpdateSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
+	CommonResultVO<?> addOrUpdateSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
 
 	/**
 	 * 删除供应商
@@ -22,7 +22,7 @@ public interface ISupplierService {
 	 * @param supplierId
 	 * @return
 	 */
-	CommonResultVO<?> DeleteSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
+	CommonResultVO<?> deleteSupplier(HttpServletRequest request,List<SupplierVO> supplierList);
 
 	/**
 	 * 查询所有的供应商
@@ -30,5 +30,5 @@ public interface ISupplierService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> QueryWl(HttpServletRequest request,SupplierVO supplier);
+	CommonResultVO<?> queryWl(HttpServletRequest request,SupplierVO supplier);
 }

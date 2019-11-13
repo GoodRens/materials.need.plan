@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.materials.dao.IMaterialsPlanDao;
@@ -21,7 +22,7 @@ public class MaterialsPlanService implements IMaterialsPlanService {
 	private IMaterialsPlanDao materialsPlanDao;
 
 	@Override
-	public CommonResultVO<?> AddNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsPlanList) {
+	public CommonResultVO<?> addNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsPlanList) {
 		CommonResultVO<MaterialsPlanVO> result = new CommonResultVO<MaterialsPlanVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -35,6 +36,8 @@ public class MaterialsPlanService implements IMaterialsPlanService {
 			result.setMsg("数据格式不正确！");
 			return result;
 		}
+		// 添加创建人
+		CommonService.addCreateByToParamList(request, materialsPlanList);
 		materialsPlanDao.addNeedPlan(materialsPlanList);
 		result.setCode(200);
 		result.setMsg("添加成功！");
@@ -43,7 +46,7 @@ public class MaterialsPlanService implements IMaterialsPlanService {
 	}
 
 	@Override
-	public CommonResultVO<?> DeleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsPlanList) {
+	public CommonResultVO<?> deleteNeedPlan(HttpServletRequest request, List<MaterialsPlanVO> materialsPlanList) {
 		CommonResultVO<MaterialsPlanVO> result = new CommonResultVO<MaterialsPlanVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
@@ -72,7 +75,7 @@ public class MaterialsPlanService implements IMaterialsPlanService {
 	}
 
 	@Override
-	public CommonResultVO<?> QueryNeedPlan(HttpServletRequest request, MaterialsPlanVO materialsPlan) {
+	public CommonResultVO<?> queryNeedPlan(HttpServletRequest request, MaterialsPlanVO materialsPlan) {
 		CommonResultVO<MaterialsPlanVO> result = new CommonResultVO<MaterialsPlanVO>();
 		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);

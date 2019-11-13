@@ -14,7 +14,7 @@ public interface IUnitService {
 	 * 
 	 * @return
 	 */
-	CommonResultVO<?> AddOrUpdateunit(HttpServletRequest request, List<UnitVO> unitList);
+	CommonResultVO<?> addOrUpdateunit(HttpServletRequest request, List<UnitVO> unitList);
 
 	/**
 	 * 删除单位
@@ -22,7 +22,7 @@ public interface IUnitService {
 	 * @param supplierId
 	 * @return
 	 */
-	CommonResultVO<?> Deleteunit(HttpServletRequest request, List<UnitVO> unitList);
+	CommonResultVO<?> deleteunit(HttpServletRequest request, List<UnitVO> unitList);
 
 	/**
 	 * 查询单位
@@ -30,5 +30,5 @@ public interface IUnitService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> Queryunit(HttpServletRequest request, UnitVO unit);
+	CommonResultVO<?> queryunit(HttpServletRequest request, UnitVO unit);
 }

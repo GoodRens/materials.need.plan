@@ -12,7 +12,7 @@
 		<foreach collection="list" item="list" index="index" separator=",">
   			(
   			 #{list.SupplierName}, 
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now()
   			 )
         </foreach>
@@ -26,7 +26,14 @@
 		) 
 	</delete>
 	<select id="QueryWl" resultType="com.example.demo.supplier.vo.SupplierVO">
-		SELECT ST.ID AS SupplierID,ST.NAME AS SupplierName  FROM supplier_t st 
+		SELECT 
+			ST.ID AS SupplierID,
+			ST.NAME AS SupplierName,
+			ST.creater_by as createBy,
+		    ST.create_date AS createDate,
+		    ST.`last_update_by` AS lastUpdateBy,
+		    ST.`last_update_date` AS lastUpdateDate    
+		FROM supplier_t st 
 		<if test="supplier !=null and supplier.SupplierName != null">
 			where ST.name  = #{SupplierName}
 		</if>

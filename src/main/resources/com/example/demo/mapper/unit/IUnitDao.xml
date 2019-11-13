@@ -13,7 +13,7 @@
 			separator=",">
 			(
 			#{list.UnitName},
-			#{list.createrBy},
+			#{list.createBy},
   			 now()
 			)
 		</foreach>
@@ -29,7 +29,14 @@
 	</delete>
 	<select id="Queryunit"
 		resultType="com.example.demo.unit.vo.UnitVO">
-		SELECT ut.ID AS UnitID,ut.NAME AS UnitName FROM unit_t ut
+		SELECT 
+			ut.ID AS UnitID,
+			ut.NAME AS UnitName,
+			ut.creater_by as createBy,
+		    ut.create_date AS createDate,
+		    ut.`last_update_by` AS lastUpdateBy,
+		    ut.`last_update_date` AS lastUpdateDate   
+		FROM unit_t ut
 		<if test="unit !=null and unit.UnitName != null">
 			where ut.name = #{unit.UnitName}
 		</if>

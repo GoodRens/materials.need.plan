@@ -15,7 +15,7 @@
 		<foreach collection="list" item="list" index="index" separator=",">
   			(#{list.roleName},
   			 #{list.roleCode},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>

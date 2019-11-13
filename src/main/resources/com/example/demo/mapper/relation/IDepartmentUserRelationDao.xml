@@ -17,7 +17,7 @@
   			(#{list.departmentId},
   			 #{list.departmentCode},
   			 #{list.userId},
-  			 #{list.createrBy},
+  			 #{list.createBy},
   			 now())
         </foreach>
 	</insert>
@@ -30,7 +30,11 @@
 	<select id="getDepartmentUserRelationByUR" resultType="com.example.demo.relation.vo.DepartmentUserRelationVO">
 		SELECT 
 		  rut.department_id AS departmentId,
-		  rut.user_id AS userId 
+		  rut.user_id AS userId ,
+		  rut.creater_by as createBy,
+		  rut.create_date AS createDate,
+		  rut.`last_update_by` AS lastUpdateBy,
+		  rut.`last_update_date` AS lastUpdateDate
 		FROM
 		  department_user_relation_t rut 
 		WHERE rut.department_id = #{departmentUserRelation.departmentId} 
@@ -45,7 +49,7 @@
 		  d.`is_exist_childen` AS isexistChilden,
 		  d.`parent_id` AS parentId,
 		  d.`department_level` AS departmentLevel,
-		  d.`creater_by` AS createrBy,
+		  d.`creater_by` AS createBy,
 		  d.`create_date` AS createDate,
 		  d.`last_update_by` AS lastupDateBy,
 		  d.`last_update_date` AS lastupDateDate 
