@@ -49,10 +49,9 @@ public class SupplierService implements ISupplierService {
 		}
 		// 添加创建人
 		CommonService.addCreateByToParamList(request, supplierList);
-		List<SupplierVO> suppliers = supplierDao.AddOrUpdateSupplier(supplierList);
+		supplierDao.AddOrUpdateSupplier(supplierList);
 		result.setCode(200);
 		result.setMsg("添加成功！");
-		result.setResultList(suppliers);
 		return result;
 	}
 

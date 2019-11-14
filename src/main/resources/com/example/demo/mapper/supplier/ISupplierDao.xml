@@ -34,7 +34,7 @@
 		    ST.`last_update_by` AS lastUpdateBy,
 		    ST.`last_update_date` AS lastUpdateDate    
 		FROM supplier_t st 
-		<if test="supplier !=null and supplier.SupplierName != null">
+		<if test="SupplierName != null">
 			where ST.name  = #{SupplierName}
 		</if>
 	</select>
