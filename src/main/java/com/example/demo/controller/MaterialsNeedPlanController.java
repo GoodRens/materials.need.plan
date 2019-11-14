@@ -355,7 +355,7 @@ public class MaterialsNeedPlanController {
 	}
 
 	@ApiOperation(value = "查询物料", notes = "无查所有")
-	@RequestMapping(value = "/AueryWl", method = RequestMethod.POST)
+	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
 	public CommonResultVO<?> queryWl(HttpServletRequest request, @RequestBody MaterialsVO materials) {
 		return materialsService.queryWl(request, materials);
 	}
