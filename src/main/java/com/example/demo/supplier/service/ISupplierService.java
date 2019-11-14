@@ -30,5 +30,5 @@ public interface ISupplierService {
 	 * @param supplierName
 	 * @return
 	 */
-	CommonResultVO<?> queryWl(HttpServletRequest request,SupplierVO supplier);
+	CommonResultVO<?> querySupplier(HttpServletRequest request,SupplierVO supplier);
 }

@@ -85,7 +85,7 @@ public class SupplierService implements ISupplierService {
 	}
 
 	@Override
-	public CommonResultVO<?> queryWl(HttpServletRequest request, SupplierVO supplier) {
+	public CommonResultVO<?> querySupplier(HttpServletRequest request, SupplierVO supplier) {
 		CommonResultVO<SupplierVO> result = new CommonResultVO<SupplierVO>();
 		// 权限校验
 		String userId = UserRequestContext.getCurrentUser(request);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.materials.dao.IMaterialsDao">
+	<insert id="addOrUpdateWl" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.List">
+		insert into materials_t (
+		name,
+		code,
+		`creater_by`,
+		`create_date`
+		)
+		values 
+		<foreach collection="list" item="list" index="index" separator=",">
+  			(#{list.WlName},
+  			 #{list.WlCID},
+  			 #{list.createBy},
+  			 now())
+        </foreach>
+	</insert>
+	
+	<delete id="deleteWl">
+		delete from materials_t mt where mt.id in (
+		<foreach collection="list" item="list" index="index" separator=",">
+			#{list.id}
+		</foreach>
+		)
+	</delete>
+	
+	<select id="queryWl" resultType="com.example.demo.materials.vo.MaterialsVO">
+		select 
+			mt.id as id,
+			mt.name as WlName,
+			mt.code as WlCID,
+			mt.creater_by as createrBy,
+			mt.create_date as createDate,
+			mt.last_update_by  as lastUpdateBy,
+			mt.last_update_date as lastUpdateDate
+		from materials_t mt where 1=1
+		<if test="WlName != null">
+			and mt.name = #{WlName}
+		</if>
+		<if test="WlCID != null">
+			and mt.code = #{WlCID}
+		</if>
+		order by mt.create_date desc
+	</select>
+</mapper>

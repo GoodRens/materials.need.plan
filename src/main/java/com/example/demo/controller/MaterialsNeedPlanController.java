@@ -23,8 +23,10 @@ import com.example.demo.materials.category.service.IMaterialsCategoryService;
 import com.example.demo.materials.category.vo.MaterialsCategoryVO;
 import com.example.demo.materials.service.IMaterialsNeedService;
 import com.example.demo.materials.service.IMaterialsPlanService;
+import com.example.demo.materials.service.IMaterialsService;
 import com.example.demo.materials.vo.MaterialsNeedVO;
 import com.example.demo.materials.vo.MaterialsPlanVO;
+import com.example.demo.materials.vo.MaterialsVO;
 import com.example.demo.relation.service.IDepartmentRoleRelationService;
 import com.example.demo.relation.service.IDepartmentUserRelationService;
 import com.example.demo.relation.service.IUserRoleRelationService;
@@ -83,6 +85,9 @@ public class MaterialsNeedPlanController {
 
 	@Autowired
 	private IMaterialsCategoryService materialsCategoryService;
+
+	@Autowired
+	private IMaterialsService materialsService;
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
@@ -269,9 +274,9 @@ public class MaterialsNeedPlanController {
 	}
 
 	@ApiOperation(value = "查询供应商", notes = "name无时查询所有")
-	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
-	public CommonResultVO<?> queryWl(HttpServletRequest request, @RequestBody SupplierVO supplier) {
-		return supplierService.queryWl(request, supplier);
+	@RequestMapping(value = "/QuerySupplier", method = RequestMethod.POST)
+	public CommonResultVO<?> querySupplier(HttpServletRequest request, @RequestBody SupplierVO supplier) {
+		return supplierService.querySupplier(request, supplier);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
@@ -337,5 +342,23 @@ public class MaterialsNeedPlanController {
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "添加物料", notes = "添加物料")
+	@RequestMapping(value = "/AddOrUpdateWl", method = RequestMethod.POST)
+	public CommonResultVO<?> addOrUpdateWl(HttpServletRequest request, @RequestBody List<MaterialsVO> materialsList) {
+		return materialsService.addOrUpdateWl(request, materialsList);
+	}
+
+	@ApiOperation(value = "删除物料", notes = "id必传")
+	@RequestMapping(value = "/DeleteWl", method = RequestMethod.POST)
+	public CommonResultVO<?> deleteWl(HttpServletRequest request, @RequestBody List<MaterialsVO> materialsList) {
+		return materialsService.deleteWl(request, materialsList);
+	}
+
+	@ApiOperation(value = "查询物料", notes = "无查所有")
+	@RequestMapping(value = "/AueryWl", method = RequestMethod.POST)
+	public CommonResultVO<?> queryWl(HttpServletRequest request, @RequestBody MaterialsVO materials) {
+		return materialsService.queryWl(request, materials);
+	}
+
 	/******************** 华丽丽的分割线 ***************************/
 }
