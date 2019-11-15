@@ -24,9 +24,9 @@ CREATE TABLE `department_role_relation_t` (
   `id` int(200) NOT NULL AUTO_INCREMENT COMMENT '关系ID',
   `department_id` int(200) DEFAULT NULL COMMENT '部门ID',
   `role_id` int(200) DEFAULT NULL COMMENT '角色ID',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -49,9 +49,21 @@ CREATE TABLE `department_t` (
   `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 /*Data for the table `department_t` */
+
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (25,NULL,'开发部',NULL,0,NULL,6,'2019-11-14 17:46:40',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (26,NULL,'人事部',NULL,0,NULL,6,'2019-11-14 17:50:19',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (27,NULL,'后勤部',NULL,0,NULL,6,'2019-11-14 17:50:31',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (28,NULL,'安全部',NULL,0,NULL,6,'2019-11-14 17:50:47',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (29,NULL,'采购部',NULL,0,NULL,6,'2019-11-14 17:50:53',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (30,NULL,'需求部',NULL,0,NULL,6,'2019-11-14 17:50:57',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (31,NULL,'物料部',NULL,0,NULL,6,'2019-11-14 17:51:03',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (32,NULL,'企划部',NULL,0,NULL,6,'2019-11-14 17:51:18',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (33,NULL,'外交部',NULL,0,NULL,6,'2019-11-14 17:51:22',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (34,NULL,'总经办',NULL,0,NULL,6,'2019-11-14 17:51:36',NULL,NULL);
+insert  into `department_t`(`id`,`department_code`,`department_name`,`is_exist_childen`,`parent_id`,`department_level`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (35,NULL,'营销部',NULL,0,NULL,6,'2019-11-14 17:51:42',NULL,NULL);
 
 /*Table structure for table `department_user_relation_t` */
 
@@ -91,9 +103,9 @@ CREATE TABLE `hi_task_t` (
   `parent_id` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '父流程id',
   `task_name` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '任务名称',
   `is_agree` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '是否通过0同意1驳回',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='流程任务历史轨迹表';
@@ -107,13 +119,17 @@ DROP TABLE IF EXISTS `materials_category_t`;
 CREATE TABLE `materials_category_t` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(2000) DEFAULT NULL COMMENT '分类名称',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
+  `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='物料分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='物料分类表';
 
 /*Data for the table `materials_category_t` */
 
-insert  into `materials_category_t`(`id`,`name`) values (2,'string');
-insert  into `materials_category_t`(`id`,`name`) values (4,'办公');
+insert  into `materials_category_t`(`id`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (4,'办公',NULL,NULL,NULL,NULL);
+insert  into `materials_category_t`(`id`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (5,'后勤',6,'2019-11-14 16:23:22',NULL,NULL);
 
 /*Table structure for table `materials_need_t` */
 
@@ -129,16 +145,16 @@ CREATE TABLE `materials_need_t` (
   `need_unit` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '需求单位',
   `technical_parameters` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '技术参数',
   `remark` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='物资需求表';
 
 /*Data for the table `materials_need_t` */
 
-insert  into `materials_need_t`(`id`,`title`,`materials_sort`,`materials_code`,`need_count`,`need_date`,`need_unit`,`technical_parameters`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (2,'string','string','string',1,NULL,'string','string','string','0','2019-11-12 15:48:33',NULL,NULL);
+insert  into `materials_need_t`(`id`,`title`,`materials_sort`,`materials_code`,`need_count`,`need_date`,`need_unit`,`technical_parameters`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (2,'string','string','string',1,NULL,'string','string','string',0,'2019-11-12 15:48:33',NULL,NULL);
 
 /*Table structure for table `materials_plan_t` */
 
@@ -164,14 +180,48 @@ CREATE TABLE `materials_plan_t` (
   `inventory_organization` varchar(2000) DEFAULT NULL COMMENT '库存组织',
   `material_trace_code` varchar(2000) DEFAULT NULL COMMENT '物料追踪码',
   `remark` varchar(2000) DEFAULT NULL COMMENT '备注',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
+  `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='物料计划表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='物料计划表';
 
 /*Data for the table `materials_plan_t` */
 
-insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`) values (1,'1','1',1,1,'1','1','1','1',1,'1','2019-11-12 20:09:16','1','1','1','1','1','1','1');
-insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`) values (2,'2','2',2,2,'2','2','2','2',2,'2','2019-11-12 20:09:40','2','2','2','2','2','2','2');
-insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`) values (3,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string');
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (1,'1','1',1,1,'1','1','1','1',1,'1','2019-11-12 20:09:16','1','1','1','1','1','1','1',NULL,NULL,NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (2,'2','2',2,2,'2','2','2','2',2,'2','2019-11-12 20:09:40','2','2','2','2','2','2','2',NULL,NULL,NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (3,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string',NULL,NULL,NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (4,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string',7,'2019-11-13 21:35:37',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (5,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string',7,'2019-11-15 16:28:48',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (6,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string',6,'2019-11-15 16:30:36',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (7,'string','string',0,0,'string','string','string','string',0,'string',NULL,'string','string','0','0','string','string','string',7,'2019-11-15 16:40:13',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (8,'Free','true',0,25,'PP_YEAR','1','1','5',121,'201911',NULL,'true',NULL,'4','5','121',NULL,NULL,7,'2019-11-15 16:53:46',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (9,'Free','true',0,25,'PP_YEAR','1','1','5',121,'201911','2019-11-15 16:48:27','true',NULL,'4','5','121',NULL,NULL,7,'2019-11-15 16:54:52',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (10,'Free','true',0,25,'PP_YEAR','1','1','5',121,'201911','2019-11-15 16:48:27','true',NULL,'4','5','121',NULL,NULL,7,'2019-11-15 16:55:48',NULL,NULL);
+insert  into `materials_plan_t`(`id`,`plan_status`,`is_within_need`,`plan_user_id`,`plan_department_id`,`plan_type`,`plan_specification`,`plan_version`,`plan_unit`,`plan_count`,`plan_month`,`plan_date`,`is_supply_confirm`,`plan_code`,`expecte_supplier`,`fixate_supplier`,`inventory_organization`,`material_trace_code`,`remark`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (11,'Free','true',0,25,'PP_YEAR','1','1','5',121,'201911','2019-11-15 08:48:27','true',NULL,'4','5','121',NULL,NULL,7,'2019-11-15 17:20:25',NULL,NULL);
+
+/*Table structure for table `materials_t` */
+
+DROP TABLE IF EXISTS `materials_t`;
+
+CREATE TABLE `materials_t` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(2000) DEFAULT NULL COMMENT '名称',
+  `code` varchar(200) DEFAULT NULL COMMENT '编码',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
+  `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+/*Data for the table `materials_t` */
+
+insert  into `materials_t`(`id`,`name`,`code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (6,'打印纸','4',6,'2019-11-14 16:21:06',NULL,NULL);
+insert  into `materials_t`(`id`,`name`,`code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (7,'打印专用墨水','4',6,'2019-11-14 16:21:33',NULL,NULL);
+insert  into `materials_t`(`id`,`name`,`code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (8,'扫把','5',6,'2019-11-14 16:23:32',NULL,NULL);
+insert  into `materials_t`(`id`,`name`,`code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (9,'拖把','5',6,'2019-11-14 16:23:38',NULL,NULL);
 
 /*Table structure for table `role_t` */
 
@@ -181,17 +231,19 @@ CREATE TABLE `role_t` (
   `id` int(200) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `role_name` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '角色名',
   `role_code` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '角色编码',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*Data for the table `role_t` */
 
-insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (21,'超级管理员','0','0','2019-11-06 11:10:45',NULL,NULL);
-insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (22,'管理员','0','0','2019-11-06 11:10:51',NULL,NULL);
+insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (21,'超级管理员','0',0,'2019-11-06 11:10:45',NULL,NULL);
+insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (22,'管理员','0',0,'2019-11-06 11:10:51',NULL,NULL);
+insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (25,'hhaa','0',7,'2019-11-13 21:36:43',NULL,NULL);
+insert  into `role_t`(`id`,`role_name`,`role_code`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (26,'SHDIE','0',7,'2019-11-13 21:50:09',NULL,NULL);
 
 /*Table structure for table `ru_task_t` */
 
@@ -205,9 +257,9 @@ CREATE TABLE `ru_task_t` (
   `assignee` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '任务提交人',
   `task_name` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '任务名称',
   `is_agree` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '是否通过0同意1驳回',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -221,10 +273,17 @@ DROP TABLE IF EXISTS `supplier_t`;
 CREATE TABLE `supplier_t` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '供应商id',
   `name` varchar(2000) DEFAULT NULL COMMENT '供应商名称',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
+  `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='供应商表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='供应商表';
 
 /*Data for the table `supplier_t` */
+
+insert  into `supplier_t`(`id`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (4,'北京物料供应商',6,'2019-11-14 16:53:59',NULL,NULL);
+insert  into `supplier_t`(`id`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (5,'天津物料供应商',6,'2019-11-14 16:55:55',NULL,NULL);
 
 /*Table structure for table `task_todo_t` */
 
@@ -238,9 +297,9 @@ CREATE TABLE `task_todo_t` (
   `task_statue` int(20) DEFAULT NULL COMMENT '任务状态',
   `task_title` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '任务标题',
   `todo_remark` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '处理意见',
-  `creater_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_update_by` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '最后更新人',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
   `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -254,12 +313,16 @@ DROP TABLE IF EXISTS `unit_t`;
 CREATE TABLE `unit_t` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '物料单位id',
   `name` varchar(2000) DEFAULT NULL COMMENT '物料单位名称',
+  `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
+  `last_update_date` datetime DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='物料单位表';
 
 /*Data for the table `unit_t` */
 
-insert  into `unit_t`(`id`,`name`) values (5,'棵');
+insert  into `unit_t`(`id`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (5,'棵',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user_role_relation_t` */
 
@@ -290,8 +353,8 @@ DROP TABLE IF EXISTS `user_t`;
 
 CREATE TABLE `user_t` (
   `id` int(200) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `password` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户密码',
   `name` varchar(200) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户密码',
   `creater_by` int(200) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `last_update_by` int(200) DEFAULT NULL COMMENT '最后更新人',
@@ -301,10 +364,10 @@ CREATE TABLE `user_t` (
 
 /*Data for the table `user_t` */
 
-insert  into `user_t`(`id`,`password`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (6,'123456','admin',NULL,NULL,NULL,NULL);
-insert  into `user_t`(`id`,`password`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (7,'string','string',0,'2019-11-04 09:57:15',NULL,NULL);
-insert  into `user_t`(`id`,`password`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (8,'123456','admin1',0,'2019-11-04 17:48:01',NULL,NULL);
-insert  into `user_t`(`id`,`password`,`name`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (9,'111111','admin2',0,'2019-11-04 18:00:27',NULL,NULL);
+insert  into `user_t`(`id`,`name`,`password`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (6,'admin','123456',NULL,NULL,NULL,NULL);
+insert  into `user_t`(`id`,`name`,`password`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (7,'string','string',0,'2019-11-04 09:57:15',NULL,NULL);
+insert  into `user_t`(`id`,`name`,`password`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (8,'admin1','123456',0,'2019-11-04 17:48:01',NULL,NULL);
+insert  into `user_t`(`id`,`name`,`password`,`creater_by`,`create_date`,`last_update_by`,`last_update_date`) values (9,'admin2','111111',0,'2019-11-04 18:00:27',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
