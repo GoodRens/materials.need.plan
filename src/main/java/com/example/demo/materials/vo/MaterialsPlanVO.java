@@ -62,6 +62,8 @@ public class MaterialsPlanVO extends CommonBaseVO {
 	private int Number;
 	/** 需求月份 需求计划类型为年度计划，此字段必填，格式为“年度+月度 */
 	private String PlanMonth;
+	/** 需求计划月份 需求计划类型为年度计划，此字段必填，格式为“年度+月度 */
+	private String needPlanMonth;
 	/** 需求日期 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
