@@ -9,7 +9,6 @@ import com.example.demo.materials.vo.MaterialsNeedVO;
 @Mapper
 public interface IMaterialsNeedDao {
 
-
 	/**
 	 * 批量新增物料需求信息
 	 * 
@@ -30,4 +29,12 @@ public interface IMaterialsNeedDao {
 	 * @param materialsNeedList
 	 */
 	void updateMaterialNeeds(List<MaterialsNeedVO> materialsNeedList);
+
+	/**
+	 * 查询物料需求信息
+	 * 
+	 * @param materialsNeed
+	 * @return
+	 */
+	List<MaterialsNeedVO> getMaterialNeeds(MaterialsNeedVO materialsNeed);
 }

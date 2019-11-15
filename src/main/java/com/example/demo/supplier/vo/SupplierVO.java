@@ -18,4 +18,8 @@ public class SupplierVO extends CommonBaseVO {
 	private int SupplierID;
 	/** 供应商名称 */
 	private String SupplierName;
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

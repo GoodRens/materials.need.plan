@@ -23,7 +23,7 @@ public class MaterialsNeedVO extends CommonBaseVO {
 	/** 物料类别 */
 	private String materialsSort;
 	/** 物料编码 */
-	private String materialsCode;
+	private int materialsCode;
 	/** 需求数量 */
 	private int needCount;
 	/** 需求日期 */

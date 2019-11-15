@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +19,7 @@ import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.department.service.IDepartmentService;
 import com.example.demo.department.vo.DepartmentVO;
+import com.example.demo.export.service.IExportService;
 import com.example.demo.login.service.IUserInfoService;
 import com.example.demo.login.vo.UserInfoVO;
 import com.example.demo.materials.category.service.IMaterialsCategoryService;
@@ -89,6 +92,9 @@ public class MaterialsNeedPlanController {
 	@Autowired
 	private IMaterialsService materialsService;
 
+	@Autowired
+	private IExportService exportService;
+
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -111,7 +117,7 @@ public class MaterialsNeedPlanController {
 		if (StringUtils.isNullOrEmpty(userId) || !userId.equals(userInfo.getId() + "")) {
 			result.setCode(400);
 			result.setMsg(
-					StringUtils.isNullOrEmpty(userInfo.getName()) ? "" : "[s" + userInfo.getName() + "]" + "未登录，注销失败！");
+					StringUtils.isNullOrEmpty(userInfo.getName()) ? "" : "[" + userInfo.getName() + "]" + "未登录，注销失败！");
 			return result;
 		}
 		result.setCode(200);
@@ -358,6 +364,14 @@ public class MaterialsNeedPlanController {
 	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
 	public CommonResultVO<?> queryWl(HttpServletRequest request, @RequestBody MaterialsVO materials) {
 		return materialsService.queryWl(request, materials);
+	}
+
+	/******************** 华丽丽的分割线 ***************************/
+	@ApiOperation(value = "导出物料需求", notes = "导出物料需求")
+	@RequestMapping(value = "/exportMaterialsNeeds", method = RequestMethod.GET)
+	public void exportMaterialsNeeds(HttpServletRequest request, HttpServletResponse response,
+			@PathParam("materialsPan") MaterialsPlanVO materialsPan) throws Exception {
+		exportService.exportMaterialsNeeds(request, response, materialsPan);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
