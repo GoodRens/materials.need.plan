@@ -28,6 +28,7 @@ public class DepartmentService implements IDepartmentService {
 	@Override
 	public CommonResultVO<?> getDepartments(HttpServletRequest request, DepartmentVO departmentVo) {
 		CommonResultVO<DepartmentVO> result = new CommonResultVO<DepartmentVO>();
+		// 登录校验
 		String userId = UserRequestContext.getCurrentUser(request);
 		if (StringUtils.isNullOrEmpty(userId)) {
 			result.setCode(403);

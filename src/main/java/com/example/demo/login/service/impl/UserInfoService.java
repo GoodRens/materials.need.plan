@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.common.service.CommonService;
 import com.example.demo.common.service.UserRequestContext;
 import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.login.dao.IUserInfoDao;

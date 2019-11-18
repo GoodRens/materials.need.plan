@@ -111,7 +111,10 @@ public class DepartmentRoleRelationService implements IDepartmentRoleRelationSer
 			return result;
 		}
 		List<RoleVO> roles = departmentRoleRelationDao.getRoleByDepartmentId(department);
-		return null;
+		result.setCode(200);
+		result.setMsg("查询成功！");
+		result.setResultList(roles);
+		return result;
 	}
 
 }

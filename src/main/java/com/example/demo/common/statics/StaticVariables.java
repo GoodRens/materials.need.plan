@@ -27,7 +27,7 @@ public class StaticVariables {
 	// 需求部门主管
 	public static String needSupervisor = "需求部门主管";
 
-	//
-	public static String[] materialsNeedExportHeads = { "物料分类编码", "物料分类名称", "物料编码", "物料名称", "规格", "型号", "单位",
-			"需求数量", "需求月份", "需求日期", "货源是否确定", "期望供应商", "固定供应", "备注" };
+	// 物料需求表头
+	public static String[] materialsNeedExportHeads = { "物料分类编码", "物料分类名称", "物料编码", "物料名称", "规格", "型号", "单位", "需求数量",
+			"需求月份", "需求日期", "货源是否确定", "期望供应商", "固定供应", "备注" };
 }

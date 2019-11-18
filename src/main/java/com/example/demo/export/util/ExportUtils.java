@@ -4,7 +4,6 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.SheetVisibility;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -50,10 +49,10 @@ public class ExportUtils {
 			cell.setCellStyle(styleHead);
 			cell.setCellValue(headNames[i]);
 		}
-		
+
 	}
 
-	public static void setOddCellStyle(XSSFWorkbook xssfWorkbook,XSSFCell cell) {
+	public static void setOddCellStyle(XSSFWorkbook xssfWorkbook, XSSFCell cell) {
 		// 创建style
 		CellStyle style = xssfWorkbook.createCellStyle();
 		style.setFillForegroundColor(IndexedColors.LEMON_CHIFFON.getIndex());// 背景色
@@ -61,7 +60,8 @@ public class ExportUtils {
 		style.setAlignment(HorizontalAlignment.CENTER);// 水平居中
 		cell.setCellStyle(style);
 	}
-	public static void setEvenCellStyle(XSSFWorkbook xssfWorkbook,XSSFCell cell) {
+
+	public static void setEvenCellStyle(XSSFWorkbook xssfWorkbook, XSSFCell cell) {
 		// 创建style
 		CellStyle style = xssfWorkbook.createCellStyle();
 		style.setFillForegroundColor(IndexedColors.LIGHT_TURQUOISE.getIndex());// 背景色

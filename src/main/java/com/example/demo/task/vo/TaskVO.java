@@ -2,6 +2,11 @@ package com.example.demo.task.vo;
 
 import com.example.demo.common.vo.CommonBaseVO;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class TaskVO extends CommonBaseVO {
 
 	private int id;

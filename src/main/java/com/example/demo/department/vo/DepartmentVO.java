@@ -11,8 +11,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class DepartmentVO extends CommonBaseVO{
+public class DepartmentVO extends CommonBaseVO {
 
+	/** id */
 	private int id;
 	/** 部门编号 */
 	private String departmentCode;

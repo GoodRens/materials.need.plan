@@ -1,66 +1,23 @@
 package com.example.demo.export.service.impl;
 
-import java.awt.Color;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.extensions.XSSFCellBorder.BorderSide;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.common.service.UserRequestContext;
-import com.example.demo.common.statics.StaticVariables;
-import com.example.demo.common.vo.CommonResultVO;
 import com.example.demo.export.service.IExportService;
 import com.example.demo.export.util.ExportUtils;
-import com.example.demo.materials.dao.IMaterialsNeedDao;
 import com.example.demo.materials.dao.IMaterialsPlanDao;
-import com.example.demo.materials.vo.MaterialsNeedVO;
 import com.example.demo.materials.vo.MaterialsPlanVO;
-import com.example.demo.materials.vo.MaterialsVO;
-import com.example.demo.supplier.vo.SupplierVO;
-import com.mysql.cj.util.StringUtils;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class ExportService implements IExportService {
 

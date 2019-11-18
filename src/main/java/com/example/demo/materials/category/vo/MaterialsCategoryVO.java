@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class MaterialsCategoryVO extends CommonBaseVO {
 
+	/** id */
 	private int id;
+	/** 物料分类名称 */
 	private String WlCategoryName;
 }
