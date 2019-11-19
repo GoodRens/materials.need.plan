@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -10,6 +9,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -97,7 +97,7 @@ public class MaterialsNeedPlanController {
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "用户登录校验", notes = "根据用户用户名检验")
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping(value = "/login")
 	public CommonResultVO<?> getUser(HttpServletResponse response, @RequestBody UserInfoVO userInfo) {
 		CommonResultVO<UserInfoVO> result = userInfoService.getUser(userInfo);
 		if (result.getCode() == 200) {
@@ -109,7 +109,7 @@ public class MaterialsNeedPlanController {
 	}
 
 	@ApiOperation(value = "用户注销", notes = "根据用户ID")
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@PostMapping(value = "/logout")
 	public CommonResultVO<?> logoutUser(HttpServletResponse response, HttpServletRequest request,
 			@RequestBody UserInfoVO userInfo) {
 		CommonResultVO<?> result = new CommonResultVO<UserInfoVO>();
@@ -128,13 +128,13 @@ public class MaterialsNeedPlanController {
 	}
 
 	@ApiOperation(value = "用户注册", notes = "用户名和密码必填")
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@PostMapping(value = "/register")
 	public CommonResultVO<?> insertUser(@RequestBody UserInfoVO userInfo) {
 		return userInfoService.insertUser(userInfo);
 	}
 
 	@ApiOperation(value = "获取所有用户", notes = "获取所有用户")
-	@RequestMapping(value = "/getAllUsers", method = RequestMethod.POST)
+	@PostMapping(value = "/getAllUsers")
 	public CommonResultVO<?> getAllUsers(HttpServletRequest request) {
 		return userInfoService.getAllUsers(request);
 	}
@@ -142,60 +142,60 @@ public class MaterialsNeedPlanController {
 	/******************** 华丽丽的分割线 ***************************/
 
 	@ApiOperation(value = "获取部门", notes = "存在层级关系")
-	@RequestMapping(value = "/getDepartments", method = RequestMethod.POST)
+	@PostMapping(value = "/getDepartments")
 	public CommonResultVO<?> getDepartments(HttpServletRequest request, @RequestBody DepartmentVO departmentVo) {
 		return departmentService.getDepartments(request, departmentVo);
 	}
 
 	@ApiOperation(value = "创建部门", notes = "部门名称，部门层级，父部门id必填（无时为0）")
-	@RequestMapping(value = "/createDepartments", method = RequestMethod.POST)
+	@PostMapping(value = "/createDepartments")
 	public CommonResultVO<?> createDepartments(HttpServletRequest request,
 			@RequestBody List<DepartmentVO> departmentVos) {
 		return departmentService.createDepartments(request, departmentVos);
 	}
 
 	@ApiOperation(value = "删除部门", notes = "部门id必填")
-	@RequestMapping(value = "/deleteDepartments", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteDepartments")
 	public CommonResultVO<?> deleteDepartments(HttpServletRequest request, @RequestBody List<Integer> departmentIds) {
 		return departmentService.deleteDepartments(request, departmentIds);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "新增部门用户关系", notes = "部门id、,用户id必填")
-	@RequestMapping(value = "/createDepartmentUserRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/createDepartmentUserRelations")
 	public CommonResultVO<?> createDepartmentUserRelations(HttpServletRequest request,
 			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
 		return departmentUserRelationService.createDepartmentUserRelations(request, departmentUserRelationList);
 	}
 
 	@ApiOperation(value = "删除部门用户关系", notes = "部门id、,用户id必填")
-	@RequestMapping(value = "/deleteDepartmentUserRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteDepartmentUserRelations")
 	public CommonResultVO<?> deleteDepartmentUserRelations(HttpServletRequest request,
 			@RequestBody List<DepartmentUserRelationVO> departmentUserRelationList) {
 		return departmentUserRelationService.deleteDepartmentUserRelations(request, departmentUserRelationList);
 	}
 
 	@ApiOperation(value = "查询角色部门", notes = "角色id必填")
-	@RequestMapping(value = "/getDepartmentByUser", method = RequestMethod.POST)
+	@PostMapping(value = "/getDepartmentByUser")
 	public CommonResultVO<?> getDepartmentByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
 		return departmentUserRelationService.getDepartmentByUser(request, userInfo);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "获取所有的角色", notes = "获取所有的角色")
-	@RequestMapping(value = "/getAllRoles", method = RequestMethod.POST)
+	@PostMapping(value = "/getAllRoles")
 	public CommonResultVO<?> getAllRoles(HttpServletRequest request) {
 		return roleService.getAllRoles(request);
 	}
 
 	@ApiOperation(value = "新增角色", notes = "角色名称必填")
-	@RequestMapping(value = "/createRoles", method = RequestMethod.POST)
+	@PostMapping(value = "/createRoles")
 	public CommonResultVO<?> createRoles(HttpServletRequest request, @RequestBody List<RoleVO> roleList) {
 		return roleService.createRoles(request, roleList);
 	}
 
 	@ApiOperation(value = "删除角色", notes = "角色id名称必填")
-	@RequestMapping(value = "/deleteRoles", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteRoles")
 	public CommonResultVO<?> deleteRoles(HttpServletRequest request, @RequestBody List<Integer> roleIds) {
 		return roleService.deleteRoles(request, roleIds);
 	}
@@ -203,42 +203,42 @@ public class MaterialsNeedPlanController {
 	/******************** 华丽丽的分割线 ***************************/
 
 	@ApiOperation(value = "批量新增用户的角色", notes = "批量新增用户的角色")
-	@RequestMapping(value = "/createUserRoleRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/createUserRoleRelations")
 	public CommonResultVO<?> createUserRoleRelations(HttpServletRequest request,
 			@RequestBody List<UserRoleRelationVO> userRoleRelationList) {
 		return userRoleRelationService.createUserRoleRelations(request, userRoleRelationList);
 	}
 
 	@ApiOperation(value = "批量删除用户角色", notes = "批量删除用户角色")
-	@RequestMapping(value = "/deleteUserRoleRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteUserRoleRelations")
 	public CommonResultVO<?> deleteUserRoleRelations(HttpServletRequest request,
 			@RequestBody List<UserRoleRelationVO> userRoleRelationList) {
 		return userRoleRelationService.deleteUserRoleRelations(request, userRoleRelationList);
 	}
 
 	@ApiOperation(value = "查询用户的角色", notes = "获取所有的角色")
-	@RequestMapping(value = "/getRolesByUser", method = RequestMethod.POST)
+	@PostMapping(value = "/getRolesByUser")
 	public CommonResultVO<?> getRolesByUser(HttpServletRequest request, @RequestBody UserInfoVO userInfo) {
 		return userRoleRelationService.getRolesByUser(request, userInfo);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "批量创建物料需求", notes = "批量创建物料需求")
-	@RequestMapping(value = "/createMaterialNeeds", method = RequestMethod.POST)
+	@PostMapping(value = "/createMaterialNeeds")
 	public CommonResultVO<?> createMaterialNeeds(HttpServletRequest request,
 			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
 		return materialsNeedService.createMaterialNeeds(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "批量删除创建物料需求", notes = "id必传")
-	@RequestMapping(value = "/deleteMaterialNeeds", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteMaterialNeeds")
 	public CommonResultVO<?> deleteMaterialNeeds(HttpServletRequest request,
 			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
 		return materialsNeedService.deleteMaterialNeeds(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "批量更新物料需求", notes = "id必传")
-	@RequestMapping(value = "/updateMaterialNeeds", method = RequestMethod.POST)
+	@PostMapping(value = "/updateMaterialNeeds")
 	public CommonResultVO<?> updateMaterialNeeds(HttpServletRequest request,
 			@RequestBody List<MaterialsNeedVO> materialsNeedList) {
 		return materialsNeedService.updateMaterialNeeds(request, materialsNeedList);
@@ -246,102 +246,102 @@ public class MaterialsNeedPlanController {
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "批量创建部门角色", notes = "部门id、角色id必传")
-	@RequestMapping(value = "/createDepartmentRoleRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/createDepartmentRoleRelations")
 	public CommonResultVO<?> createDepartmentRoleRelations(HttpServletRequest request,
 			@RequestBody List<DepartmentRoleRelationVO> departmentRoleRelationList) {
 		return departmentRoleRelationService.createDepartmentRoleRelations(request, departmentRoleRelationList);
 	}
 
 	@ApiOperation(value = "批量删除部门角色", notes = "部门id、角色id必传")
-	@RequestMapping(value = "/deleteDepartmentRoleRelations", method = RequestMethod.POST)
+	@PostMapping(value = "/deleteDepartmentRoleRelations")
 	public CommonResultVO<?> deleteDepartmentRoleRelations(HttpServletRequest request,
 			@RequestBody List<DepartmentRoleRelationVO> departmentRoleRelationList) {
 		return departmentRoleRelationService.deleteDepartmentRoleRelations(request, departmentRoleRelationList);
 	}
 
 	@ApiOperation(value = "获取部门下所有角色", notes = "部门id必传")
-	@RequestMapping(value = "/getRoleByDepartmentId", method = RequestMethod.POST)
+	@PostMapping(value = "/getRoleByDepartmentId")
 	public CommonResultVO<?> getRoleByDepartmentId(HttpServletRequest request, @RequestBody DepartmentVO department) {
 		return departmentRoleRelationService.getRoleByDepartmentId(request, department);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "添加供应商", notes = "有id时更新，无时新建")
-	@RequestMapping(value = "/AddOrUpdateSupplier", method = RequestMethod.POST)
+	@PostMapping(value = "/AddOrUpdateSupplier")
 	public CommonResultVO<?> addOrUpdateSupplier(HttpServletRequest request,
 			@RequestBody List<SupplierVO> supplierList) {
 		return supplierService.addOrUpdateSupplier(request, supplierList);
 	}
 
 	@ApiOperation(value = "删除供应商", notes = "id必传")
-	@RequestMapping(value = "/DeleteSupplier", method = RequestMethod.POST)
+	@PostMapping(value = "/DeleteSupplier")
 	public CommonResultVO<?> deleteSupplier(HttpServletRequest request, @RequestBody List<SupplierVO> supplierList) {
 		return supplierService.deleteSupplier(request, supplierList);
 	}
 
 	@ApiOperation(value = "查询供应商", notes = "name无时查询所有")
-	@RequestMapping(value = "/QuerySupplier", method = RequestMethod.POST)
+	@PostMapping(value = "/QuerySupplier")
 	public CommonResultVO<?> querySupplier(HttpServletRequest request, @RequestBody SupplierVO supplier) {
 		return supplierService.querySupplier(request, supplier);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "添加物料单位", notes = "有id时更新，无时新建")
-	@RequestMapping(value = "/AddOrUpdateunit", method = RequestMethod.POST)
+	@PostMapping(value = "/AddOrUpdateunit")
 	public CommonResultVO<?> addOrUpdateunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
 		return unitService.addOrUpdateunit(request, unitList);
 	}
 
 	@ApiOperation(value = "删除物料单位", notes = "id必传")
-	@RequestMapping(value = "/Deleteunit", method = RequestMethod.POST)
+	@PostMapping(value = "/Deleteunit")
 	public CommonResultVO<?> deleteunit(HttpServletRequest request, @RequestBody List<UnitVO> unitList) {
 		return unitService.deleteunit(request, unitList);
 	}
 
 	@ApiOperation(value = "查询物料单位", notes = "无name时查询所有")
-	@RequestMapping(value = "/Queryunit", method = RequestMethod.POST)
+	@PostMapping(value = "/Queryunit")
 	public CommonResultVO<?> queryunit(HttpServletRequest request, @RequestBody UnitVO unit) {
 		return unitService.queryunit(request, unit);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
-	@RequestMapping(value = "/AddNeedPlan", method = RequestMethod.POST)
+	@PostMapping(value = "/AddNeedPlan")
 	public CommonResultVO<?> addNeedPlan(HttpServletRequest request,
 			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
 		return materialsPlanService.addNeedPlan(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "删除物料计划", notes = "id必传")
-	@RequestMapping(value = "/DeleteNeedPlan", method = RequestMethod.POST)
+	@PostMapping(value = "/DeleteNeedPlan")
 	public CommonResultVO<?> deleteNeedPlan(HttpServletRequest request,
 			@RequestBody List<MaterialsPlanVO> materialsNeedList) {
 		return materialsPlanService.deleteNeedPlan(request, materialsNeedList);
 	}
 
 	@ApiOperation(value = "创建物料计划", notes = "创建物料计划")
-	@RequestMapping(value = "/QueryNeedPlan", method = RequestMethod.POST)
+	@PostMapping(value = "/QueryNeedPlan")
 	public CommonResultVO<?> queryNeedPlan(HttpServletRequest request, @RequestBody MaterialsPlanVO materialsNeed) {
 		return materialsPlanService.queryNeedPlan(request, materialsNeed);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "创建物料分类", notes = "创建物料分类")
-	@RequestMapping(value = "/AddOrUpdateWlCategory", method = RequestMethod.POST)
+	@PostMapping(value = "/AddOrUpdateWlCategory")
 	public CommonResultVO<?> addOrUpdateWlCategory(HttpServletRequest request,
 			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
 		return materialsCategoryService.addOrUpdateWlCategory(request, materialsCategoryList);
 	}
 
 	@ApiOperation(value = "删除物料分类", notes = "id必传")
-	@RequestMapping(value = "/DeleteWlCategory", method = RequestMethod.POST)
+	@PostMapping(value = "/DeleteWlCategory")
 	public CommonResultVO<?> deleteWlCategory(HttpServletRequest request,
 			@RequestBody List<MaterialsCategoryVO> materialsCategoryList) {
 		return materialsCategoryService.deleteWlCategory(request, materialsCategoryList);
 	}
 
 	@ApiOperation(value = "查询物料分类", notes = "无名称时查所有")
-	@RequestMapping(value = "/QueryWlCategory", method = RequestMethod.POST)
+	@PostMapping(value = "/QueryWlCategory")
 	public CommonResultVO<?> queryWlCategory(HttpServletRequest request,
 			@RequestBody MaterialsCategoryVO materialsCategory) {
 		return materialsCategoryService.queryWlCategory(request, materialsCategory);
@@ -349,26 +349,26 @@ public class MaterialsNeedPlanController {
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "添加物料", notes = "添加物料")
-	@RequestMapping(value = "/AddOrUpdateWl", method = RequestMethod.POST)
+	@PostMapping(value = "/AddOrUpdateWl")
 	public CommonResultVO<?> addOrUpdateWl(HttpServletRequest request, @RequestBody List<MaterialsVO> materialsList) {
 		return materialsService.addOrUpdateWl(request, materialsList);
 	}
 
 	@ApiOperation(value = "删除物料", notes = "id必传")
-	@RequestMapping(value = "/DeleteWl", method = RequestMethod.POST)
+	@PostMapping(value = "/DeleteWl")
 	public CommonResultVO<?> deleteWl(HttpServletRequest request, @RequestBody List<MaterialsVO> materialsList) {
 		return materialsService.deleteWl(request, materialsList);
 	}
 
 	@ApiOperation(value = "查询物料", notes = "无查所有")
-	@RequestMapping(value = "/QueryWl", method = RequestMethod.POST)
+	@PostMapping(value = "/QueryWl")
 	public CommonResultVO<?> queryWl(HttpServletRequest request, @RequestBody MaterialsVO materials) {
 		return materialsService.queryWl(request, materials);
 	}
 
 	/******************** 华丽丽的分割线 ***************************/
 	@ApiOperation(value = "导出物料需求", notes = "导出物料需求")
-	@RequestMapping(value = "/exportMaterialsNeeds", method = RequestMethod.GET)
+	@PostMapping(value = "/exportMaterialsNeeds")
 	public void exportMaterialsNeeds(HttpServletRequest request, HttpServletResponse response,
 			@PathParam("materialsPan") MaterialsPlanVO materialsPan) throws Exception {
 		exportService.exportMaterialsNeeds(request, response, materialsPan);
